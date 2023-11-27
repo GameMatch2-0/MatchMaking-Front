@@ -5,6 +5,8 @@ const Cadastro = () => {
         <div>
             <h1>Bem-vindo à página de cadastro!</h1>
         </div>
+        //TESTEEEEEE    
+            
     );
 }
 
