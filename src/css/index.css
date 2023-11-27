@@ -1,0 +1,28 @@
+.index-banner{
+    background-color: #4150B7;
+    width: 100%;
+    height: 100vh;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    background-image: url('../assets/fundo.svg');
+    background-position: center;
+    background-size: cover;
+}
+
+.index-secao2{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.index-secao2 .esquerda, 
+.index-secao2 .direita{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100vh;
+}
+
+.index-secao2 .esquerda img{
+    width: 60%;
+}
