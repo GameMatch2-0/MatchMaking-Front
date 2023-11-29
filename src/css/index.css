@@ -8,21 +8,53 @@
     background-size: cover;
 }
 
-.index-secao2{
-    width: 100%;
-    height: 100vh;
+.about-section {
     display: flex;
-}
-
-.index-secao2 .esquerda, 
-.index-secao2 .direita{
-    display: flex;
-    justify-content: center;
     align-items: center;
-    width: 50%;
-    height: 100vh;
+    justify-content: space-around;
+    margin: 106px 0 106px 0;    
 }
 
-.index-secao2 .esquerda img{
-    width: 60%;
+.mural-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 106px 0 106px 0;    
 }
+
+.left{
+    width: 504px;;
+}
+
+.right {
+    width: 504px;
+}
+
+.line {
+    height: 5px;
+    background-color: #2A3EB9;
+    border-radius: 5px;
+}
+
+.about-text {
+    padding-top: 54px;
+    font-size: 32px;
+    font-family: sans-serif;
+    font-weight: 500;
+    color: #575757;
+}
+
+.title {
+    font-size: 64px;
+    line-height: 60px;
+    color: #181E29;
+}
+
+.left img{
+    width: 400px;
+}
+
+.right img{
+    width: 360px;
+}
+
