@@ -11,7 +11,7 @@ export default function Index() {
 
             <section className="index-banner">
                 <h5>Deslize, jogue, conecte-se!</h5><h2>Conectando jogadores, construindo amizades e explorando novos mundos juntos.</h2>
-                <p>dusdaaaa</p>
+                <button className="btn-conectar">Conectar</button>
             </section>
 
             <div className="index-secao2">

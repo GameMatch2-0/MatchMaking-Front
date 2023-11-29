@@ -9,12 +9,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+.index-banner .btn-conectar{
+    background-color: white;
+    color: blue;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    font-size: 1.2em;
+    font-weight: 500;
+    cursor: pointer;
 }
 
 .index-banner h5{
     font-size: 60px;
     color: white;
-    
+
 }
 
 .about-section {
