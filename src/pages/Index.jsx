@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar.jsx";
+import Footer from "../components/Footer.jsx"
 import '../css/index.css'
 import perfil from '../assets/perfil.png'
 import mural from '../assets/mural.png'
@@ -9,7 +10,8 @@ export default function Index() {
             <Navbar />
 
             <section className="index-banner">
-
+                <h5>Deslize, jogue, conecte-se!</h5><h2>Conectando jogadores, construindo amizades e explorando novos mundos juntos.</h2>
+                <p>dusdaaaa</p>
             </section>
 
             <div className="index-secao2">
@@ -45,6 +47,10 @@ export default function Index() {
                     </div>
                 </div>
 
+            </div>
+
+            <div className="footer-div">
+                <Footer />
             </div>
         </>
     )

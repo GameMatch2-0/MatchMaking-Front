@@ -6,6 +6,15 @@
     background-image: url('../assets/fundo.svg');
     background-position: center;
     background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.index-banner h5{
+    font-size: 60px;
+    color: white;
+    
 }
 
 .about-section {
