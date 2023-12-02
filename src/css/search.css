@@ -1,0 +1,12 @@
+.search-bar {
+    color: #fff;
+    width: 99%;
+    height: 40px;
+    margin-top: 15px;
+    font-size: 24px;
+    background-color: transparent;
+    border: solid 2px #fff;
+    border-radius: 10px;
+    background: url(../assets/Lupa.png) no-repeat right;
+    background-size: 40px;
+}
