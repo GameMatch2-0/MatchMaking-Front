@@ -6,23 +6,76 @@
     background-image: url('../assets/fundo.svg');
     background-position: center;
     background-size: cover;
-}
-
-.index-secao2{
-    width: 100%;
-    height: 100vh;
-    display: flex;
-}
-
-.index-secao2 .esquerda, 
-.index-secao2 .direita{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50%;
-    height: 100vh;
+    flex-direction: column;
 }
 
-.index-secao2 .esquerda img{
-    width: 60%;
+.index-banner .btn-conectar{
+    background-color: white;
+    color: blue;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 0.5em;
+    font-size: 1.2em;
+    font-weight: 500;
+    cursor: pointer;
 }
+
+.index-banner h5{
+    font-size: 60px;
+    color: white;
+
+}
+
+.about-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 106px 0 106px 0;    
+}
+
+.mural-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 106px 0 106px 0;    
+}
+
+.left{
+    width: 504px;;
+}
+
+.right {
+    width: 504px;
+}
+
+.line {
+    height: 5px;
+    background-color: #2A3EB9;
+    border-radius: 5px;
+}
+
+.about-text {
+    padding-top: 54px;
+    font-size: 32px;
+    font-family: sans-serif;
+    font-weight: 500;
+    color: #575757;
+}
+
+.title {
+    font-size: 64px;
+    line-height: 60px;
+    color: #181E29;
+}
+
+.left img{
+    width: 400px;
+}
+
+.right img{
+    width: 360px;
+}
+
