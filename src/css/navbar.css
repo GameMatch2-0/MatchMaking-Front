@@ -1,7 +1,7 @@
 nav{
     width: 100%;
     height: 10vh;
-    background-color: transparent;
+    background-color:#2A3EB9;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -49,7 +49,7 @@ nav ul li:hover::after{
 nav .direita, 
 nav .esquerda{
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     width: 50%;
 }
