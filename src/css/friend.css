@@ -1,0 +1,16 @@
+.friend {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
+.friend p {
+    color: #fff;
+    font-size: 24px;
+}
+
+.friend img {
+    border-radius: 50%;
+    padding-right: 10px;
+}

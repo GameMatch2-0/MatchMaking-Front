@@ -1,0 +1,158 @@
+.user-profile {
+    display: flex;
+}
+
+.user-menu {
+    background-color: #181e29;
+    width: 30%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-header {
+    background-image: linear-gradient(120deg, #2032a7, #4150B7);
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+}
+
+.foto-usuario {
+    cursor: pointer;
+    width: 65px;
+    height: 65px;
+    margin-left: 5%;
+    border-radius: 15px;
+}
+
+.usernames {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 60%;
+}
+
+.usernames p {
+    color: #fff;
+    padding-left: 10px;
+}
+
+.nickname {
+    font-size: 24px;
+}
+
+.real-name {
+    font-size: 16px;
+}
+
+.avaliation {
+    display: flex;
+    align-items: flex-start;
+    height: 60%;
+    margin-right: 5%;
+}
+
+.rate-icon {
+    height: 12px;
+    padding-top: 10px;
+}
+
+.rate {
+    font-size: 24px;
+    padding-left: 5px;
+    color: #fff;
+}
+
+.menu-body {
+    width: 100%;
+    height: 100%;
+}
+
+.menu-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    height: 10%;
+    margin-left:5%;
+}
+
+.menu-nav p {
+    color: #fff;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.slide-bar-area {
+    width: 90%;
+    height: 5px;
+    margin-left: 5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.slide-bar1 {
+    width: 60px;
+}
+
+.slide-bar2 {
+    width: 85px;
+}
+
+.slide-bar3 {
+    width: 50px;
+}
+
+.menu-content {
+    width: 90%;
+    height: 90%;
+    margin-left: 5%;
+}
+
+.friend-list {
+    min-height: 50vh;
+    max-height: 50vh;
+    margin: 5% 0;
+    overflow-y: auto;
+    border: solid 2px #fff;
+    border-radius: 10px;
+    padding: 5px 0 0 5px;
+}
+
+.chat-list {
+    min-height: 50vh;
+    max-height: 50vh;
+    margin: 5% 0;
+    overflow-y: auto;
+    border: solid 2px #fff;
+    border-radius: 10px;
+    padding: 5px 0 0 5px;
+}
+
+.mark-name {
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.match-area {
+    background-color: #98a1db;
+    width: 70%;
+    height: 100vh;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+  
+::-webkit-scrollbar-thumb {
+    background: #fff;
+    border: solid 3px #181e29;
+    border-radius: 10px;
+}
