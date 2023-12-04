@@ -1,3 +1,7 @@
+p {
+    font-family: 'lalezar';
+}
+
 .user-profile {
     display: flex;
 }
@@ -125,9 +129,24 @@
     max-height: 50vh;
     margin: 5% 0;
     overflow-y: auto;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     border: solid 2px #fff;
     border-radius: 10px;
     padding: 5px 0 0 5px;
+}
+
+.profile-color {
+    background-color: palevioletred;
+    width: 100%;
+    height: 10vh;
+}
+
+.profile-color .color-option {
+    background-color: aqua;
+    width: 15%;
+    height: 10vh;
 }
 
 .mark-name {
