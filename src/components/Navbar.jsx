@@ -12,7 +12,7 @@ export default function Navbar() {
                 <div className="direita">
                     <ul>
                         <li onClick={() => navigate("/planos")}>Planos</li>
-                        <li>Sobre</li>
+                        <li onClick={() => navigate("/sobre")}>Sobre</li>
                         <li onClick={() => navigate("/contato")}>Contato</li>
                         <button className="btn-entrar">Entrar</button>
                     </ul>

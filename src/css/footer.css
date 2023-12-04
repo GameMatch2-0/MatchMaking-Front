@@ -8,16 +8,16 @@
 
 }
 
-h4{
+.div-footer h4{
     color: white;
     font-size: 30px;
 }
 
-h2{
+.div-footer h2{
     color: white;
 }
 
-p{
+.div-footer p{
     color: white;
     font-family: sans-serif;
 }
