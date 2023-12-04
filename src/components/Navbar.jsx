@@ -13,7 +13,7 @@ export default function Navbar() {
                     <ul>
                         <li onClick={() => navigate("/planos")}>Planos</li>
                         <li>Sobre</li>
-                        <li>Contato</li>
+                        <li onClick={() => navigate("/contato")}>Contato</li>
                         <button className="btn-entrar">Entrar</button>
                     </ul>
 
