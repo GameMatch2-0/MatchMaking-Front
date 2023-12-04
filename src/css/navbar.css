@@ -1,34 +1,38 @@
-nav{
-    width: 100%;
+nav {
+    width: 100vw;
     height: 10vh;
-    background-color:#2A3EB9;
+    background-color: #2A3EB9;
     display: flex;
     justify-content: space-around;
     align-items: center;
     position: fixed;
 }
-nav h2{
-    font-size: 2em;
+
+nav h2 {
+    font-size: 2.6vw;
     color: white;
+    cursor: pointer;
 }
 
-nav ul{
+nav ul {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 30%;
+    width: 100vw;
     list-style: none;
     gap: 5em;
     color: white;
 }
 
-nav ul li{
+nav ul li {
     cursor: pointer;
     position: relative;
-    font-size: 1.25em;
+    /* font-size: 1.25em; */
+    /* font-size-adjust: inherit; */
+    font-size: 1.6vw;
 }
 
-nav ul li::after{
+nav ul li::after {
     content: '';
     display: block;
     width: 0;
@@ -37,34 +41,40 @@ nav ul li::after{
     transition: width 0.3s;
     position: absolute;
     top: 0;
-    
+
 
 }
 
-nav ul li:hover::after{
+nav ul li:hover::after {
     width: 100%;
-    
+
 }
 
-nav .direita, 
-nav .esquerda{
+nav .direita,
+nav .esquerda {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 50%;
+    width: 50vw;
 }
 
-nav .direita .btn-entrar{
+nav .esquerda {
+    margin-left: -20vw;
+}
+
+nav .direita .btn-entrar {
     background-color: white;
     color: blue;
     border: none;
+    width: 5.31vw;
     padding: 0.5em 1em;
     border-radius: 0.5em;
-    font-size: 1.2em;
+    /* font-size: 1.2em; */
+    font-size: 1.4vw;
     font-weight: 500;
     cursor: pointer;
 }
 
-nav .direita .btn-entrar:hover{
+nav .direita .btn-entrar:hover {
     background-color: #f2f2f2;
 }

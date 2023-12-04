@@ -9,7 +9,7 @@ export default function Planos(){
         <>
         <Navbar />
 
-        <div className="div-planos">
+        <section className="section-planos">
                 <div className="planos-div-direita">
                     <h4 className="planos-info">MatchMaking Premium, mais liberdade para você ser quem quiser!</h4>
                     <h1>Teste por 1 mês GRATIS - Depois R$19,90</h1>
@@ -19,7 +19,7 @@ export default function Planos(){
                 <div className="planos-div-esquerda">
                     <img src={beneficios} alt="" />
                 </div>
-            </div>
+            </section>
         <Footer />
         </>
     )
