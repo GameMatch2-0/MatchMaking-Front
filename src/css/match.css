@@ -1,0 +1,47 @@
+.match-menu {
+    background-color: brown;
+    width: 55%;
+    height: 85%;
+    margin: 5% 25%;
+    display: flex;
+}
+
+.match-info {
+    background-color: #181e29;
+    width: 90%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.album {
+    background-color: aqua;
+    width: 100%;
+    height: 45%;
+    border-radius: 20px 20px 0 0;
+}
+
+.profile-info {
+    background-color: orange;
+    width: 100%;
+    height: 55%;
+    border-radius: 0 0 20px 20px;
+}
+
+.match-options {
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+}
+
+.match-options img {
+    background-color: #181e29;
+    border-radius: 50%;
+    margin: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.match-options img:active {
+    background-color: #4150B7;
+    transform: scale(1.1);
+}

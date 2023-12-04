@@ -4,6 +4,7 @@ import star from '../assets/star.png'
 import Friend from '../components/Friend.jsx';
 import Chat from '../components/Chat.jsx';
 import Search from '../components/Search.jsx';
+import MatchMenu from '../components/MatchMenu.jsx';
 import React, {useState} from 'react';
 
 export default function Profile() {
@@ -26,7 +27,7 @@ export default function Profile() {
         { name: 'Amigo 1', message: 'Bom dia', photo: foto },
         { name: 'Amigo 2', message: 'Boa tarde', photo: foto },
         { name: 'Amigo 3', message: 'Bora jogar?', photo: foto },
-        { name: 'Amigo 4', message: 'GG', photo: foto },
+        { name: 'Amigo 4', message: 'GGgggggggggggggggggggggg gggggggggggggggggggggggggggggggg', photo: foto },
         { name: 'Amigo 5', message: 'Você joga bem', photo: foto },
         { name: 'Amigo 6', message: 'Legal', photo: foto },
     ];
@@ -35,8 +36,8 @@ export default function Profile() {
     const [color2, setColor2] = useState('none');
     const [color3, setColor3] = useState('none');
 
-    const [showProfile, setShowProfile] = useState(false);
-    const [showFriends, setShowFriends] = useState(true);
+    const [showProfile, setShowProfile] = useState(true);
+    const [showFriends, setShowFriends] = useState(false);
     const [showChat, setShowChat] = useState(false);
 
     const handleClickProfile = () => {
@@ -120,8 +121,28 @@ export default function Profile() {
                         </div>
 
                         <div className="menu-content">
-                            <div className="profile-nav">
+                            <div className="profile-nav" style={{ display: showProfile ? 'block' : 'none' }}>
+                                <div className="user-information">
+                                    <div className="bio">
 
+                                    </div>
+
+                                    <div className="fav-games">
+
+                                    </div>
+
+                                    <div className="consoles">
+
+                                    </div>
+
+                                    <div className="profile-color">
+                                        <div className="color-option blue" />
+                                        <div className="color-option red" />
+                                        <div className="color-option yellow" />
+                                        <div className="color-option green" />
+                                        <div className="color-option red" />
+                                    </div>
+                                </div>
                             </div>
 
                             <div className="friends-nav" style={{ display: showFriends ? 'block' : 'none' }}>
@@ -152,7 +173,7 @@ export default function Profile() {
                 </div>
 
                 <div className="match-area">
-
+                        <MatchMenu />
                 </div>
             </section>
         </>
