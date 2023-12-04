@@ -1,0 +1,34 @@
+.div-planos{
+    padding-top: 10vh;
+    display: flex;
+    align-items: center;
+    padding: 150px 0 100px 0;
+    justify-content: space-around;
+}
+
+.div-planos .planos-div-direita{
+    width: 50%
+}
+
+.div-planos .planos-info{
+    color: black;
+    font-size: 40px;
+}
+
+.div-planos p{
+    color: black;
+}
+
+.div-planos img{
+    width: 300px;
+}
+
+.div-planos button{
+    background-color:blue;
+    color:white;
+    border-radius: 20px;
+    border: none;
+    width: 100px;
+    height: 40px;
+
+}
