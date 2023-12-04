@@ -7,6 +7,7 @@ import imagem3 from '../assets/img3.png'
 import missao from '../assets/missao.png'
 import visao from '../assets/visao.png'
 import valores from '../assets/valores.png'
+import secao4 from '../assets/secao4.png'
 
 export default function Index() {
     return (
@@ -75,6 +76,10 @@ export default function Index() {
                         Inovação e criatividade</p>
                 </div>
 
+            </div>
+
+            <div className="sobre-secao4">
+                <img className="img-secao4"src={secao4} alt="" />
             </div>
 
             <div className="footer-div">
