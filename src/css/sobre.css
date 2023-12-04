@@ -1,8 +1,12 @@
-.sobre-banner{
+body {
+    overflow-x: hidden;
+}
+
+.sobre-banner {
     padding: 150px 0 100px 0;
     background-color: #4150B7;
     width: 100%;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     background-image: url('../assets/fundo.png');
     background-position: center;
     background-size: cover;
@@ -11,31 +15,31 @@
     color: white;
 }
 
-.sobre-info{
+.sobre-info {
     width: 50%;
     padding: 50px;
     color: white;
 }
 
-.sobre-info h2{
+.sobre-info h2 {
     font-size: 50px;
 }
 
 
-.sobre-banner h5{
+.sobre-banner h5 {
     font-size: 60px;
     color: white;
 
 }
 
-.sobre-secao2{
+.sobre-secao2 {
     display: flex;
     flex-direction: column;
     color: black;
 
 }
 
-.sobre-secao2 h5{
+.sobre-secao2 h5 {
     font-size: 40px;
     padding-left: 50px;
 }
@@ -46,38 +50,38 @@
     margin: 10px;
     display: flex;
     align-items: flex-start;
-    flex-direction: column;   
+    flex-direction: column;
 }
 
-.div-jornada{
+.div-jornada {
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.div-parte1{
+.div-parte1 {
     display: flex;
     padding: 50px;
 }
 
-.div-parte2{
+.div-parte2 {
     display: flex;
     padding: 50px;
     justify-content: flex-end;
     text-align: right;
 }
 
-.div-info{
+.div-info {
     display: flex;
     flex-direction: column;
 }
 
-.div-parte3{
+.div-parte3 {
     display: flex;
     padding: 50px;
 }
 
-.sobre-secao3{
+.sobre-secao3 {
     background-color: rgb(227, 227, 227);
     border-radius: 30px;
     display: flex;
@@ -86,11 +90,13 @@
     height: 600px;
 }
 
-.sobre-secao3 img{
+.sobre-secao3 img {
     width: 100px;
 }
 
-.missao, .visao, .valores{
+.missao,
+.visao,
+.valores {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -99,15 +105,9 @@
 
 }
 
-.img-secao4{
+.img-secao4 {
     width: 100%;
     padding-top: 80px;
     padding-left: 0;
     padding-bottom: 0;
 }
-
-
-
-
-
-

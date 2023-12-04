@@ -1,29 +1,28 @@
-.div-footer{
+.div-footer {
     background-image: url("../assets/footer.png");
-    width: 100%;
+    width: 100vw;
     height: 40vh;
     display: flex;
     justify-content: space-around;
     align-items: center;
- 
-
+    background-size: cover;
 }
 
-.div-footer h4{
+.div-footer h4 {
     color: white;
     font-size: 30px;
 }
 
-.div-footer h2{
+.div-footer h2 {
     color: white;
 }
 
-.div-footer p{
+.div-footer p {
     color: white;
     font-family: sans-serif;
 }
 
-.div-links{
+.div-links {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -31,12 +30,16 @@
     padding-right: 50px;
 }
 
-.direita img{
+.direita img {
     height: 20px;
 }
 
+.esquerda h2 {
+    font-size: 1.6vw;
+    margin: 2vw 2vw 1vh 0;
+}
 
-
-
-
-
+.esquerda p {
+    font-size: 1.1vw;
+    margin: 0 2vw 1vh 0;
+}

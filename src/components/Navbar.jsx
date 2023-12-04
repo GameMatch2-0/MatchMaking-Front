@@ -16,7 +16,7 @@ export default function Navbar() {
 
             <nav>
 
-                <div className="esquerda"><h2>MatchMaking</h2></div>
+                <div className="esquerda"><h2 onClick={() => navigate("/")}>MatchMaking</h2></div>
                 <div className="direita">
                     <ul>
                         <li onClick={() => navigate("/planos")}>Planos</li>

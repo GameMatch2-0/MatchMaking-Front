@@ -14,7 +14,7 @@ export default function Index() {
                 <button className="btn-conectar">Conectar</button>
             </section>
 
-            <div className="index-secao2">
+            <section className="index-secao2">
                 <div className="about-section">
                     <div className="left">
                         <img src={perfil} alt="" />
@@ -30,8 +30,8 @@ export default function Index() {
                     </div>
                 </div>
 
-            </div>
-            <div className="index-secao3">
+            </section>
+            <section className="index-secao3">
                 <div className="mural-section">
                     <div className="left">
                         <div>
@@ -47,7 +47,7 @@ export default function Index() {
                     </div>
                 </div>
 
-            </div>
+            </section>
 
             <div className="footer-div">
                 <Footer />
