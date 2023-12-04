@@ -33,7 +33,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     <div className="additional-options">
-                        <input
+                        <input className='ipt-chk'
                             type="checkbox"
                             checked={changeAuthMethod}
                             onChange={() => setChangeAuthMethod(!changeAuthMethod)}

@@ -1,7 +1,5 @@
 /* src/App.css */
-*{
-    color: white;
-}
+
 .modal {
     display: none;
     position: fixed;
@@ -79,6 +77,10 @@
     align-items: center;
   }
 
+  .ipt-chk{
+    margin-right: 1vh;
+  }
+
   .btn-entrar-login{
     background-color: transparent;
     border: #fff;
@@ -87,6 +89,11 @@
     margin-left: 25vh;
     margin-bottom: 4vh;
     margin-top: 4vh;
+  }
+
+  .btn-entrar-login:hover{
+    background-color: #ccc;
+    color: black;
   }
   
 
