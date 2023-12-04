@@ -47,7 +47,6 @@ export default function Profile() {
         setShowProfile(true);
         setShowFriends(false);
         setShowChat(false);
-        // Adicione mais funcionalidades aqui
     };
 
     const handleClickFriends = () => {
@@ -58,7 +57,6 @@ export default function Profile() {
         setShowProfile(false);
         setShowFriends(true);
         setShowChat(false);
-        // Adicione mais funcionalidades aqui
     };
 
     const handleChat = () => {
@@ -69,7 +67,6 @@ export default function Profile() {
         setShowProfile(false);
         setShowFriends(false);
         setShowChat(true);
-        // Adicione mais funcionalidades aqui
     };
 
     return (
