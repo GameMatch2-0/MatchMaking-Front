@@ -114,9 +114,82 @@ p {
     margin-left: 5%;
 }
 
+.user-information {
+    max-height: 60vh;
+    min-height: 60vh;
+    min-width: 50vh;
+    margin: 5% 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.name-edit {
+    display: flex;
+    justify-content: space-between;
+    margin: 1% 0 1%;
+}
+
+.name-edit p{
+    color: #fff;
+    font-size: 24px;
+}
+
+.name-edit img {
+    height: 24px;
+    cursor: pointer;
+}
+
+.bio textarea {
+    background-color: #181e29;
+    color: #fff;
+    width: 99%;
+    height: 15vh;
+    border-radius: 10px;
+    border: solid 2px #fff;
+}
+
+.profile-color {
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-color .color-option {
+    width: 15%;
+    height: 8vh;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.color-option:active {
+    transform: scale(.95);
+}
+
+.color-option.blue {
+    background-color: #2032a7;
+}
+
+.color-option.red {
+    background-color: #bb1818;
+}
+
+.color-option.yellow {
+    background-color: #ec9d09;
+}
+
+.color-option.green {
+    background-color: #0d9c14;
+}
+
+.color-option.black {
+    background-color: #000000;
+}
+
 .friend-list {
-    min-height: 50vh;
-    max-height: 50vh;
+    min-height: 45vh;
+    max-height: 45vh;
     margin: 5% 0;
     overflow-y: auto;
     border: solid 2px #fff;
@@ -125,8 +198,8 @@ p {
 }
 
 .chat-list {
-    min-height: 50vh;
-    max-height: 50vh;
+    min-height: 45vh;
+    max-height: 45vh;
     margin: 5% 0;
     overflow-y: auto;
     overflow-x: hidden;
@@ -135,18 +208,6 @@ p {
     border: solid 2px #fff;
     border-radius: 10px;
     padding: 5px 0 0 5px;
-}
-
-.profile-color {
-    background-color: palevioletred;
-    width: 100%;
-    height: 10vh;
-}
-
-.profile-color .color-option {
-    background-color: aqua;
-    width: 15%;
-    height: 10vh;
 }
 
 .mark-name {
@@ -162,16 +223,10 @@ p {
     height: 100vh;
 }
 
-::-webkit-scrollbar {
-    width: 15px;
+.hidden {
+    visibility: hidden;
 }
 
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-  
-::-webkit-scrollbar-thumb {
-    background: #fff;
-    border: solid 3px #181e29;
-    border-radius: 10px;
+::-webkit-scrollbar {
+    display: none;
 }

@@ -1,10 +1,10 @@
-section {
+/* section {
     display: flex;
-    /* justify-content: center; */
-    /* align-items: center; */
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     height: 100vh;
-}
+} */
 
 .index-banner {
     background-color: #4150B7;

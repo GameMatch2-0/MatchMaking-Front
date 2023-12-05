@@ -1,10 +1,12 @@
 import '../css/profile.css'
 import foto from '../assets/foto.png'
 import star from '../assets/star.png'
+import edit from '../assets/edit.png'
 import Friend from '../components/Friend.jsx';
 import Chat from '../components/Chat.jsx';
 import Search from '../components/Search.jsx';
 import MatchMenu from '../components/MatchMenu.jsx';
+import FavCard from '../components/FavCard.jsx';
 import React, {useState} from 'react';
 
 export default function Profile() {
@@ -32,18 +34,30 @@ export default function Profile() {
         { name: 'Amigo 6', message: 'Legal', photo: foto },
     ];
 
-    const [color1, setColor1] = useState('#4150B7');
-    const [color2, setColor2] = useState('none');
-    const [color3, setColor3] = useState('none');
+    const favGameCard = [
+        { name: 'Assassins Creed', image: foto},
+        { name: 'The Last of Us', image: foto},
+        { name: 'Bloons TD', image: foto},
+    ];
+
+    const favConsoleCard = [
+        { name: 'Playstation 5', image: foto},
+        { name: 'XBox Series S', image: foto},
+        { name: 'PC', image: foto},
+    ];
+
+    const [headerColor, setHeaderColor] = useState('linear-gradient(120deg, #2032a7, #4150B7)');
+    const [slideBarColor, setSlideBarColor] = useState('#4150B7');
+    const [matchAreaColor, setMatchAreaColor] = useState('#98a1db');
 
     const [showProfile, setShowProfile] = useState(true);
     const [showFriends, setShowFriends] = useState(false);
     const [showChat, setShowChat] = useState(false);
 
+    const [activeBar, setActiveBar] = useState(1);
+
     const handleClickProfile = () => {
-        setColor1('#4150B7');
-        setColor2('transparent');
-        setColor3('transparent');
+        setActiveBar(1);
 
         setShowProfile(true);
         setShowFriends(false);
@@ -51,9 +65,7 @@ export default function Profile() {
     };
 
     const handleClickFriends = () => {
-        setColor1('transparent');
-        setColor2('#4150B7');
-        setColor3('transparent');
+        setActiveBar(2);
 
         setShowProfile(false);
         setShowFriends(true);
@@ -61,20 +73,24 @@ export default function Profile() {
     };
 
     const handleChat = () => {
-        setColor1('transparent');
-        setColor2('transparent');
-        setColor3('#4150B7');
+        setActiveBar(3);
 
         setShowProfile(false);
         setShowFriends(false);
         setShowChat(true);
     };
 
+    const handleColorChange = (header1, header2, slideBar, matchArea) => {
+        setHeaderColor(`linear-gradient(120deg, ${header1}, ${header2})`);
+        setSlideBarColor(slideBar);
+        setMatchAreaColor(matchArea);
+    };
+
     return (
         <>
             <section className='user-profile'>
                 <div className="user-menu">
-                    <div className="menu-header">
+                    <div className="menu-header" style={{ backgroundImage: headerColor }}>
                         <img src={foto} alt="foto de perfil" className='foto-usuario'/>
 
                         <div className="usernames">
@@ -112,32 +128,103 @@ export default function Profile() {
                         </div>
 
                         <div className="slide-bar-area">
-                            <div className="slide-bar1"  style={{backgroundColor: color1}}/>
-                            <div className="slide-bar2"  style={{backgroundColor: color2}}/>
-                            <div className="slide-bar3"  style={{backgroundColor: color3}}/>
-                        </div>
+                            <div className={`slide-bar1 ${activeBar === 1 ? '' : 'hidden'}`} style={{backgroundColor: slideBarColor}}/>
+                            <div className={`slide-bar2 ${activeBar === 2 ? '' : 'hidden'}`} style={{backgroundColor: slideBarColor}}/>
+                            <div className={`slide-bar3 ${activeBar === 3 ? '' : 'hidden'}`} style={{backgroundColor: slideBarColor}}/>
+                        </div>  
+
 
                         <div className="menu-content">
                             <div className="profile-nav" style={{ display: showProfile ? 'block' : 'none' }}>
                                 <div className="user-information">
                                     <div className="bio">
+                                        <div className="name-edit">
+                                            <p>Bio:</p>
 
+                                            <img src={edit} alt="icone de edição" />
+                                        </div>
+
+                                        <textarea cols="30" rows="10"></textarea>
                                     </div>
 
                                     <div className="fav-games">
+                                        <div className="name-edit">
+                                            <p>Jogos favoritos:</p>
 
+                                            <img src={edit} alt="icone de edição" />
+                                        </div>
+
+                                        {favGameCard.map((favGameCard, index) => (
+                                            <FavCard key={index} name={favGameCard.name} image={favGameCard.image} />
+                                        ))}
                                     </div>
 
                                     <div className="consoles">
+                                        <div className="name-edit">
+                                            <p>Meus consoles:</p>
 
+                                            <img src={edit} alt="icone de edição" />
+                                        </div>
+
+                                        {favConsoleCard.map((favConsoleCard, index) => (
+                                            <FavCard key={index} name={favConsoleCard.name} image={favConsoleCard.image} />
+                                        ))}
+                                    </div>
+
+                                    <div className="fav-hobbies">
+                                        <div className="name-edit">
+                                            <p>Gostos pessoais:</p>
+
+                                            <img src={edit} alt="icone de edição" />
+                                        </div>
                                     </div>
 
                                     <div className="profile-color">
-                                        <div className="color-option blue" />
-                                        <div className="color-option red" />
-                                        <div className="color-option yellow" />
-                                        <div className="color-option green" />
-                                        <div className="color-option red" />
+                                        <div
+                                            className="color-option blue"
+                                            onClick={() => handleColorChange(
+                                                '#2032a7',
+                                                '#4150B7',
+                                                '#4150B7',
+                                                '#98a1db'
+                                            )}
+                                        />
+                                        <div
+                                            className="color-option red"
+                                            onClick={() => handleColorChange(
+                                                '#bb1818',
+                                                '#ec3030',
+                                                '#bb1818',
+                                                '#c56b6b'
+                                            )}
+                                        />
+                                        <div
+                                            className="color-option yellow"
+                                            onClick={() => handleColorChange(
+                                                '#ec9d09',
+                                                '#fcad1a',
+                                                '#ec9d09',
+                                                '#fcd285'
+                                            )}
+                                        />
+                                        <div
+                                            className="color-option green"
+                                            onClick={() => handleColorChange(
+                                                '#0d9c14',
+                                                '#15b81d',
+                                                '#0d9c14',
+                                                '#82d186',
+                                            )}
+                                        />
+                                        <div
+                                            className="color-option black"
+                                            onClick={() => handleColorChange(
+                                                '#000000',
+                                                '#131313',
+                                                '#000000',
+                                                '#777777'
+                                            )}
+                                        />
                                     </div>
                                 </div>
                             </div>
@@ -169,7 +256,7 @@ export default function Profile() {
                     </h1>
                 </div>
 
-                <div className="match-area">
+                <div className="match-area" style={{ backgroundColor: matchAreaColor }}>
                         <MatchMenu />
                 </div>
             </section>
