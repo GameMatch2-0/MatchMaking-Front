@@ -11,6 +11,7 @@
 
 .chat .chat-message {
     font-size: 16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .chat img {
