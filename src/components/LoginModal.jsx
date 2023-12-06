@@ -5,20 +5,25 @@ import '../css/login.css'
 
 
 const LoginModal = ({ isOpen, onClose }) => {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [changeAuthMethod, setChangeAuthMethod] = useState(false);
 
     const handleLogin = async () => {
         try {
             
-            const response = await axios.post('http://seu-backend.com/api/login', {
-                username,
+            const response = await axios.post('http://localhost:8080/usuarios/login', {
+                email,
                 password,
             });
 
            
             console.log('Token:', response.data.token);
+
+            sessionStorage.setItem('token', response.data.token)
+            sessionStorage.setItem('userID', response.data.userId)
+            sessionStorage.setItem('nome', response.data.nome)
+            sessionStorage.setItem('email', response.data.email)
             
             onClose(); 
         } catch (error) {
@@ -35,7 +40,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                     <label>Nome de usuário:</label>
                     <input
                         type="text"
-                        value={username}
+                        value={email}
                         onChange={(e) => setUsername(e.target.value)}
                     />
                     <label>Senha:</label>
