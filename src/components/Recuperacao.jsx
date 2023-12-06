@@ -1,16 +1,13 @@
-// src/LoginModal.js
 import React, { useState } from 'react';
 import '../css/login.css'
 
 
-const LoginModal = ({ isOpen, onClose }) => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [changeAuthMethod, setChangeAuthMethod] = useState(false);
+const Recuperacao = ({ isOpen, onClose }) => {
+    const [email, setEmail] = useState('');
 
     const handleLogin = () => {
         // Lógica de autenticação aqui
-        console.log('Autenticado com:', username, password);
+        console.log('Recuperando senha no email:', email);
         onClose(); // Fechar o modal após o login bem-sucedido
     };
 
@@ -18,42 +15,21 @@ const LoginModal = ({ isOpen, onClose }) => {
         <div className={`modal ${isOpen ? 'open' : ''}`}>
             <div className="modal-content">
                 <span className="close" onClick={onClose}>&times;</span>
-                <h2>Login</h2>
+                <h2>Informe o endereço de email para redefinir a senha</h2>
                 <form>
-                    <label>Nome de usuário:</label>
+                    <label>E-mail:</label>
                     <input
                         type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
-                    <label>Senha:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <div className="additional-options">
-                        <input className='ipt-chk'
-                            type="checkbox"
-                            checked={changeAuthMethod}
-                            onChange={() => setChangeAuthMethod(!changeAuthMethod)}
-                        />
-                         <label>Lembrar identificação do usuário</label>
-                    </div>
-                    <button className='btn-entrar-login' type="button" onClick={handleLogin}>
-                        Entrar
+                    <button className='btn-entrar-login' type="button" onClick={window.alert('email enviado!')}>
+                        Enviar
                     </button>
-                    <div className="login-method">
-                        <label>Mudar método de autenticação</label>
-                        <p>Esqueci minha senha</p>
-                    </div>
-
-
-
                 </form>
             </div>
         </div>
     );
 };
 
-export default LoginModal;
+export default Recuperacao;
