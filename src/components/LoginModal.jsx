@@ -44,7 +44,6 @@ const LoginModal = ({ isOpen, onClose }) => {
                         Entrar
                     </button>
                     <div className="login-method">
-                        <label>Mudar método de autenticação</label>
                         <p>Esqueci minha senha</p>
                     </div>
 

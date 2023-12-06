@@ -1,0 +1,86 @@
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.modal.open {
+    display: flex;
+}
+
+.modal-content {
+    background-color: #181E29;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    height: 400px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 40px;
+    cursor: pointer;
+    color: white;
+    margin-right: 10vh;
+}
+
+.div-interesses {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.div-interesses .div-linha1 {
+    display: flex;
+}
+
+.div-interesses .div-linha2 {
+    display: flex;
+}
+
+.div-interesses .div-linha3 {
+    display: flex;
+}
+
+.div-interesses .div-linha4 {
+    display: flex;
+}
+
+.div-interesses button:hover{
+    background-color: white;
+    color: black;
+}
+
+.div-interesses button{
+    margin-right: 10px;
+}
+
+.div-interesses .btn-confirmar:hover{
+   background-color: white;
+   color: black;
+}
+
+.div-interesses .btn-confirmar{
+    margin-top: 20px;
+    background-color: transparent;
+    border-style: groove;
+}
+
