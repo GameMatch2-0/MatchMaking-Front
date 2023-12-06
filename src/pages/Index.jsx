@@ -12,12 +12,13 @@ export default function Index() {
         <>
             <Navbar />
 
-            <section className="index-banner">
+            <div className="index-banner">
                 <h5>Deslize, jogue, conecte-se!</h5><h2>Conectando jogadores, construindo amizades e explorando novos mundos juntos.</h2>
+
                 <button className="btn-conectar" onClick={() => navigate("/cadastro")}>Conectar</button>
             </section>
 
-            <section className="index-secao2">
+            <div className="index-secao2">
                 <div className="about-section">
                     <div className="left">
                         <img src={perfil} alt="" />
@@ -33,8 +34,8 @@ export default function Index() {
                     </div>
                 </div>
 
-            </section>
-            <section className="index-secao3">
+            </div>
+            <div className="index-secao3">
                 <div className="mural-section">
                     <div className="left">
                         <div>
@@ -50,7 +51,7 @@ export default function Index() {
                     </div>
                 </div>
 
-            </section>
+            </div>
 
             <div className="footer-div">
                 <Footer />
