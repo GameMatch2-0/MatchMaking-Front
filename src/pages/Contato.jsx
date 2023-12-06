@@ -2,7 +2,6 @@ import Navbar from "../components/Navbar.jsx";
 import Footer from "../components/Footer.jsx";
 import React, { useState } from 'react';
 import "../css/contato.css"
-import Interesses from '../components/Interesses';
 
 export default function Contato() {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -20,7 +19,6 @@ export default function Contato() {
                         <textarea cols="30" rows="10" className="txt-area"></textarea>
                     </div>
                     <button onClick={openModal}>Enviar</button>
-                    <Interesses isOpen={isModalOpen} onClose={closeModal} />
                     <p>Tente também pelo nosso whatsapp: +55 11 95914-7955</p>
                 </div>
 
