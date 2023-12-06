@@ -11,16 +11,16 @@ const LoginModal = ({ isOpen, onClose }) => {
 
     const handleLogin = async () => {
         try {
-            // Faça a solicitação POST para o backend
+            
             const response = await axios.post('http://seu-backend.com/api/login', {
                 username,
                 password,
             });
 
-            // Lógica de tratamento do token ou resposta do backend aqui
+           
             console.log('Token:', response.data.token);
             
-            onClose(); // Fechar o modal após o login bem-sucedido
+            onClose(); 
         } catch (error) {
             console.error('Erro ao autenticar:', error);
         }
