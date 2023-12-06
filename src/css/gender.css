@@ -1,0 +1,12 @@
+.gender-options {
+    display: flex;
+    justify-content: space-between;
+    width: 93%;
+}
+
+.gender-options button {
+    width: 28%;
+    background-color: #4150B7;
+    border: solid 1px #fff;
+    border-radius: 20px;
+}

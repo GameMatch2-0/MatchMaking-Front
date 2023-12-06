@@ -1,35 +1,37 @@
-nav {
+.nav-bar {
     width: 100vw;
     height: 10vh;
     background-color: #2A3EB9;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     position: fixed;
 }
 
-nav h2 {
-    font-size: 2.6vw;
+.nav-esquerda h2 {
+    font-size: 24px;
     color: white;
     cursor: pointer;
+    margin-left: 5vw;
+}
+
+.direita {
+    margin-right: 5vw;
 }
 
 nav ul {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 100vw;
     list-style: none;
-    gap: 5em;
     color: white;
 }
 
 nav ul li {
     cursor: pointer;
     position: relative;
-    /* font-size: 1.25em; */
-    /* font-size-adjust: inherit; */
-    font-size: 1.6vw;
+    font-size: 24px;
 }
 
 nav ul li::after {
@@ -41,13 +43,10 @@ nav ul li::after {
     transition: width 0.3s;
     position: absolute;
     top: 0;
-
-
 }
 
 nav ul li:hover::after {
     width: 100%;
-
 }
 
 nav .direita,
@@ -56,10 +55,6 @@ nav .esquerda {
     justify-content: space-around;
     align-items: center;
     width: 50vw;
-}
-
-nav .esquerda {
-    margin-left: -20vw;
 }
 
 nav .direita .btn-entrar {
