@@ -16,7 +16,7 @@ export default function Index() {
                 <h5>Deslize, jogue, conecte-se!</h5><h2>Conectando jogadores, construindo amizades e explorando novos mundos juntos.</h2>
 
                 <button className="btn-conectar" onClick={() => navigate("/cadastro")}>Conectar</button>
-            </section>
+            </div>
 
             <div className="index-secao2">
                 <div className="about-section">

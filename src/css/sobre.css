@@ -76,6 +76,11 @@ body {
     flex-direction: column;
 }
 
+.div-info p {
+    color: #181E29;
+    font-size: 24px;
+}
+
 .div-parte3 {
     display: flex;
     padding: 50px;
@@ -92,6 +97,10 @@ body {
 
 .sobre-secao3 img {
     width: 100px;
+}
+
+.sobre-secao3 p {
+    color: #181E29;
 }
 
 .missao,
