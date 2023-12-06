@@ -3,16 +3,20 @@ import Footer from "../components/Footer.jsx"
 import '../css/index.css'
 import perfil from '../assets/perfil.png'
 import mural from '../assets/mural.png'
+import { useNavigate } from "react-router-dom";
 
 export default function Index() {
+    const navigate = useNavigate();
+
     return (
         <>
             <Navbar />
 
             <div className="index-banner">
                 <h5>Deslize, jogue, conecte-se!</h5><h2>Conectando jogadores, construindo amizades e explorando novos mundos juntos.</h2>
-                <button className="btn-conectar">Conectar</button>
-            </div>
+
+                <button className="btn-conectar" onClick={() => navigate("/cadastro")}>Conectar</button>
+            </section>
 
             <div className="index-secao2">
                 <div className="about-section">
