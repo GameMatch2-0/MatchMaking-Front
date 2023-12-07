@@ -11,6 +11,7 @@ const Recuperacao = ({ isOpen, onClose }) => {
         onClose(); // Fechar o modal após o login bem-sucedido
     };
 
+
     return (
         <div className={`modal ${isOpen ? 'open' : ''}`}>
             <div className="modal-content">
@@ -23,7 +24,7 @@ const Recuperacao = ({ isOpen, onClose }) => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                    <button className='btn-entrar-login' type="button" onClick={window.alert('email enviado!')}>
+                    <button className='btn-entrar-login' type="button">
                         Enviar
                     </button>
                 </form>
