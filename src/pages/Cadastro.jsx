@@ -113,8 +113,7 @@ export default function Cadastro(){
         console.log(formData.usuario);
 
         try {
-            localStorage.setItem('usuario', formData.usuario);
-            console.log('Resposta do servidor:', formData);
+            localStorage.setItem('formData', JSON.stringify(formData));
             navigate('/profile');
         } catch (error) {
             console.error('Erro ao criar conta:', error);
