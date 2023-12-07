@@ -89,7 +89,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                         Entrar
                     </button>
                     <div className="login-method" onClick={openModal} >
-                        <p>Esqueci minha senha</p>
+                        <p className='esqueci-senha'>Esqueci minha senha</p>
                     </div>
                     <Recuperacao isOpen={isModalOpen} onClose={closeModal} />
 
