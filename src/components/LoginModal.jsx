@@ -1,5 +1,5 @@
 // src/LoginModal.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../css/login.css'
 
@@ -8,6 +8,23 @@ const LoginModal = ({ isOpen, onClose }) => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [changeAuthMethod, setChangeAuthMethod] = useState(false);
+    const rememberedEmail = sessionStorage.getItem('email')
+    const rememberedSenha = sessionStorage.getItem('password')
+
+    const [rememberUser, setRememberUser] = useState(false);
+
+    useEffect(() => {
+        const rememberedEmail = sessionStorage.getItem('email');
+        const rememberedSenha = sessionStorage.getItem('password');
+        const rememberedUserID = sessionStorage.getItem('userID');
+        const rememberedName = sessionStorage.getItem('nome');
+
+        if (rememberUser && rememberedEmail && rememberedUserID && rememberedName) {
+            setEmail(rememberedEmail);
+            setSenha(rememberedSenha); 
+        }
+    }, [rememberUser]);
+
 
     const handleLogin = async () => {
         try {
@@ -24,7 +41,15 @@ const LoginModal = ({ isOpen, onClose }) => {
             sessionStorage.setItem('userID', response.data.userId)
             sessionStorage.setItem('nome', response.data.nome)
             sessionStorage.setItem('email', response.data.email)
-            
+            sessionStorage.setItem('password', senha)
+
+            if (rememberUser) {
+                sessionStorage.setItem('nome', response.data.nome);
+                sessionStorage.setItem('email', response.data.email);
+                console.log('credenciais salvas')
+            }
+
+            window.location.href = 'http://localhost:5173/profile'
             onClose(); 
         } catch (error) {
             console.error('Erro ao autenticar:', error);
@@ -37,16 +62,16 @@ const LoginModal = ({ isOpen, onClose }) => {
                 <span className="close" onClick={onClose}>&times;</span>
                 <h2>Login</h2>
                 <form>
-                    <label>Nome de usuário:</label>
+                    <label>E-mail:</label>
                     <input
                         type="text"
-                        value={email}
+                        value={rememberedEmail} 
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <label>Senha:</label>
                     <input
                         type="password"
-                        value={senha}
+                        value={rememberedSenha}
                         onChange={(e) => setSenha(e.target.value)}
                     />
                     <div className="additional-options">
