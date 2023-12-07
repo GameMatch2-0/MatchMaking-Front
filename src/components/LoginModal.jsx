@@ -6,7 +6,7 @@ import '../css/login.css'
 
 const LoginModal = ({ isOpen, onClose }) => {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [senha, setSenha] = useState('');
     const [changeAuthMethod, setChangeAuthMethod] = useState(false);
 
     const handleLogin = async () => {
@@ -14,7 +14,7 @@ const LoginModal = ({ isOpen, onClose }) => {
             
             const response = await axios.post('http://localhost:8080/usuarios/login', {
                 email,
-                password,
+                senha,
             });
 
            
@@ -41,13 +41,13 @@ const LoginModal = ({ isOpen, onClose }) => {
                     <input
                         type="text"
                         value={email}
-                        onChange={(e) => setUsername(e.target.value)}
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                     <label>Senha:</label>
                     <input
                         type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={senha}
+                        onChange={(e) => setSenha(e.target.value)}
                     />
                     <div className="additional-options">
                         <input className='ipt-chk'
