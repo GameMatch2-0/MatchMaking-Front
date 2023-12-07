@@ -16,8 +16,10 @@ const InteressesModal = ({ isOpen, onClose }) => {
 
     const confirmarInteresses = () => {
         console.log('interesses selecionados:', interessesSelecionados);
+
+        const interessesEmString = JSON.stringify(interessesSelecionados);
+        localStorage.setItem('interessesFavoritos', interessesEmString);
         onClose();
-        // Aqui você pode salvar os interessesSelecionados onde desejar
     };
 
     return (

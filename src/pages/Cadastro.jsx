@@ -110,11 +110,11 @@ export default function Cadastro(){
     };          
 
     const handleCreateAccount = async () => {
-        console.log(formData);
+        console.log(formData.usuario);
 
         try {
-            const response = await axios.post('http://localhost:8080/perfis/novo-cadastro', formData);
-            console.log('Resposta do servidor:', response.data);
+            localStorage.setItem('usuario', formData.usuario);
+            console.log('Resposta do servidor:', formData);
             navigate('/profile');
         } catch (error) {
             console.error('Erro ao criar conta:', error);

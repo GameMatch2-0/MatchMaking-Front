@@ -16,8 +16,10 @@ const HobbiesModal = ({ isOpen, onClose }) => {
 
     const confirmarHobbies = () => {
         console.log('hobbies selecionados:', hobbiesSelecionados);
+
+        const hobbiesEmString = JSON.stringify(hobbiesSelecionados);
+        localStorage.setItem('hobbiesFavoritos', hobbiesEmString);
         onClose();
-        // Aqui você pode salvar os interessesSelecionados onde desejar
     };
 
     return (

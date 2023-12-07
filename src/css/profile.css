@@ -227,6 +227,16 @@ p {
     visibility: hidden;
 }
 
+.rolar-fav {
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-bottom: 30px;
+    gap: 10px;
+    width: 100%;
+}
+
 ::-webkit-scrollbar {
     display: none;
 }

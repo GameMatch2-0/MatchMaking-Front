@@ -7,6 +7,10 @@ import Chat from '../components/Chat.jsx';
 import Search from '../components/Search.jsx';
 import MatchMenu from '../components/MatchMenu.jsx';
 import FavCard from '../components/FavCard.jsx';
+import InteressesModal from "../components/Interesses";
+import PlataformasModal from "../components/PlataformasModal";
+import HobbiesModal from "../components/HobbiesModal";
+import JogosModal from "../components/JogosModal";
 import React, {useState} from 'react';
 
 export default function Profile() {
@@ -34,17 +38,29 @@ export default function Profile() {
         { name: 'Amigo 6', message: 'Legal', photo: foto },
     ];
 
-    const favGameCard = [
-        { name: 'Assassins Creed', image: foto},
-        { name: 'The Last of Us', image: foto},
-        { name: 'Bloons TD', image: foto},
-    ];
+    const jogosFavoritos = JSON.parse(localStorage.getItem('jogosFavoritos'));
+    const favGameCard = jogosFavoritos.map(jogo => ({
+        name: jogo,
+        image: foto
+    }));  
+    
+    const interessesFavoritos = JSON.parse(localStorage.getItem('interessesFavoritos'));
+    const favInteresseCard = interessesFavoritos.map(interesse => ({
+        name: interesse,
+        image: foto
+    }));
+    
+    const plataformasFavoritas = JSON.parse(localStorage.getItem('plataformasFavoritas'));
+    const favPlataformaCard = plataformasFavoritas.map(plataforma => ({
+        name: plataforma,
+        image: foto
+    }));
 
-    const favConsoleCard = [
-        { name: 'Playstation 5', image: foto},
-        { name: 'XBox Series S', image: foto},
-        { name: 'PC', image: foto},
-    ];
+    const hobbiesFavoritos = JSON.parse(localStorage.getItem('hobbiesFavoritos'));
+    const favHobbieCard = hobbiesFavoritos.map(hobbie => ({
+        name: hobbie,
+        image: foto
+    }));
 
     const [headerColor, setHeaderColor] = useState('linear-gradient(120deg, #2032a7, #4150B7)');
     const [slideBarColor, setSlideBarColor] = useState('#4150B7');
@@ -84,6 +100,43 @@ export default function Profile() {
         setHeaderColor(`linear-gradient(120deg, ${header1}, ${header2})`);
         setSlideBarColor(slideBar);
         setMatchAreaColor(matchArea);
+    };
+
+    const [isInteressesModalOpen, setIsInteressesModalOpen] = useState(false);
+    const [isPlataformasModalOpen, setIsPlataformasModalOpen] = useState(false);
+    const [isHobbiesModalOpen, setIsHobbiesModalOpen] = useState(false);
+    const [isJogosModalOpen, setIsJogosModalOpen] = useState(false);
+
+    const openInteressesModal = () => {
+        setIsInteressesModalOpen(true);
+    };
+
+    const openPlataformasModal = () => {
+        setIsPlataformasModalOpen(true);
+    };
+
+    const openHobbiesModal = () => {
+        setIsHobbiesModalOpen(true);
+    };
+
+    const openJogosModal = () => {
+        setIsJogosModalOpen(true);
+    };
+
+    const closeInteressesModal = () => {
+        setIsInteressesModalOpen(false);
+    };
+
+    const closePlataformasModal = () => {
+        setIsPlataformasModalOpen(false);
+    }; 
+    
+    const closeHobbiesModal = () => {
+        setIsHobbiesModalOpen(false);
+    };
+
+    const closeJogosModal = () => {
+        setIsJogosModalOpen(false);
     };
 
     return (
@@ -147,35 +200,64 @@ export default function Profile() {
                                         <textarea cols="30" rows="10"></textarea>
                                     </div>
 
+                                    <InteressesModal isOpen={isInteressesModalOpen} onClose={closeInteressesModal} />
+                                    <PlataformasModal isOpen={isPlataformasModalOpen} onClose={closePlataformasModal} />
+                                    <HobbiesModal isOpen={isHobbiesModalOpen} onClose={closeHobbiesModal} />
+                                    <JogosModal isOpen={isJogosModalOpen} onClose={closeJogosModal} />
+
                                     <div className="fav-games">
                                         <div className="name-edit">
                                             <p>Jogos favoritos:</p>
 
-                                            <img src={edit} alt="icone de edição" />
+                                            <img src={edit} alt="icone de edição" onClick={openJogosModal}/>
                                         </div>
 
-                                        {favGameCard.map((favGameCard, index) => (
-                                            <FavCard key={index} name={favGameCard.name} image={favGameCard.image} />
-                                        ))}
+                                        <div className="rolar-fav">
+                                            {favGameCard.map((favGameCard, index) => (
+                                                <FavCard key={index} name={favGameCard.name} image={favGameCard.image} />
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <div className="fav-interesses">
+                                        <div className="name-edit">
+                                            <p>Gêneros favoritos:</p>
+
+                                            <img src={edit} alt="icone de edição" onClick={openInteressesModal}/>
+                                        </div>
+
+                                        <div className="rolar-fav">
+                                            {favInteresseCard.map((favInteresseCard, index) => (
+                                                <FavCard key={index} name={favInteresseCard.name} image={favInteresseCard.image} />
+                                            ))}
+                                        </div>
                                     </div>
 
                                     <div className="consoles">
                                         <div className="name-edit">
                                             <p>Meus consoles:</p>
 
-                                            <img src={edit} alt="icone de edição" />
+                                            <img src={edit} alt="icone de edição" onClick={openPlataformasModal}/>
                                         </div>
 
-                                        {favConsoleCard.map((favConsoleCard, index) => (
-                                            <FavCard key={index} name={favConsoleCard.name} image={favConsoleCard.image} />
-                                        ))}
+                                        <div className="rolar-fav">
+                                            {favPlataformaCard.map((favPlataformaCard, index) => (
+                                                <FavCard key={index} name={favPlataformaCard.name} image={favPlataformaCard.image} />
+                                            ))}
+                                        </div>
                                     </div>
 
                                     <div className="fav-hobbies">
                                         <div className="name-edit">
                                             <p>Gostos pessoais:</p>
 
-                                            <img src={edit} alt="icone de edição" />
+                                            <img src={edit} alt="icone de edição" onClick={openHobbiesModal}/>
+                                        </div>
+
+                                        <div className="rolar-fav">
+                                            {favHobbieCard.map((favHobbieCard, index) => (
+                                                <FavCard key={index} name={favHobbieCard.name} image={favHobbieCard.image} />
+                                            ))}
                                         </div>
                                     </div>
 

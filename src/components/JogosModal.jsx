@@ -16,8 +16,10 @@ const JogosModal = ({ isOpen, onClose }) => {
 
     const confirmarJogos = () => {
         console.log('jogos selecionados:', jogosSelecionados);
+
+        const jogosEmString = JSON.stringify(jogosSelecionados);
+        localStorage.setItem('jogosFavoritos', jogosEmString);
         onClose();
-        // Aqui você pode salvar os interessesSelecionados onde desejar
     };
 
     return (

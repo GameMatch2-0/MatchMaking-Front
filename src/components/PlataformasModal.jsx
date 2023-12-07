@@ -16,8 +16,10 @@ const PlataformasModal = ({ isOpen, onClose }) => {
 
     const confirmarPlataformas = () => {
         console.log('plataformas selecionadas:', plataformasSelecionadas);
+
+        const plataformasEmString = JSON.stringify(plataformasSelecionadas);
+        localStorage.setItem('plataformasFavoritas', plataformasEmString);
         onClose();
-        // Aqui você pode salvar os interessesSelecionados onde desejar
     };
 
     return (

@@ -16,8 +16,10 @@ const OrientacaoSexualModal = ({ isOpen, onClose }) => {
 
     const confirmarOrientacoes = () => {
         console.log('orientações selecionadas:', orientacaoSelecionadas);
+
+        const orientacaoEmString = JSON.stringify(orientacaoSelecionadas);
+        localStorage.setItem('orientacaoSexual', orientacaoEmString);
         onClose();
-        // Aqui você pode salvar os interessesSelecionados onde desejar
     };
 
     return (
