@@ -12,30 +12,32 @@ import PlataformasModal from "../components/PlataformasModal";
 import HobbiesModal from "../components/HobbiesModal";
 import JogosModal from "../components/JogosModal";
 import React, {useState} from 'react';
+import { useNavigate } from 'react-router';
 
 export default function Profile() {
+    const navigate = useNavigate();
+
+    const returnIndex = async () => {
+        navigate('/');
+    };
+
+    const formDataString = localStorage.getItem('formData');
+    const formData = formDataString ? JSON.parse(formDataString) : {};
+
+    const nickname = formData.usuario ? formData.usuario.nickname : '';
+    const nome = formData.usuario ? formData.usuario.nome : '';
+    const sobrenome = formData.usuario ? formData.usuario.sobrenome : '';
+
     const userInfo = {
-        nickname: 'Kayaterasu',
+        nickname: 'Pipintas',
         realname: 'Bruno Pimentel',
-        rate: 4.8,
+        rate: 5.0,
     }
 
     const friendsList = [
-        { name: 'Amigo 1', photo: foto },
-        { name: 'Amigo 2', photo: foto },
-        { name: 'Amigo 3', photo: foto },
-        { name: 'Amigo 4', photo: foto },
-        { name: 'Amigo 5', photo: foto },
-        { name: 'Amigo 6', photo: foto },
     ];
 
     const chatList = [
-        { name: 'Amigo 1', message: 'Bom dia', photo: foto },
-        { name: 'Amigo 2', message: 'Boa tarde', photo: foto },
-        { name: 'Amigo 3', message: 'Bora jogar?', photo: foto },
-        { name: 'Amigo 4', message: 'GGgggggggggggggggggggggg gggggggggggggggggggggggggggggggg', photo: foto },
-        { name: 'Amigo 5', message: 'Você joga bem', photo: foto },
-        { name: 'Amigo 6', message: 'Legal', photo: foto },
     ];
 
     const jogosFavoritos = JSON.parse(localStorage.getItem('jogosFavoritos'));
@@ -333,7 +335,7 @@ export default function Profile() {
                         </div>
                     </div>
 
-                    <h1 className="mark-name">
+                    <h1 className="mark-name" onClick={returnIndex} >
                         MatchMaking
                     </h1>
                 </div>
