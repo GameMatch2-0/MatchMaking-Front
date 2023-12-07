@@ -30,7 +30,7 @@ export default function Footer() {
                         </div>
                     </div>
                     <div className="meio">
-                        <p className="copyright">© 2023 MatchMaking.com</p>
+                        <p className="copyright">©2023</p>
 
                     </div>
 

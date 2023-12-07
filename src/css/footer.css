@@ -67,7 +67,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: 40%;
+    width: 45%;
     padding-right: 0;
     margin-left: 450px;
 
@@ -112,7 +112,7 @@ body {
 
     width: 13.7vw;
     height: 26px;
-    padding-top: 290px;
+    padding-top: 260px;
     /* margin-right: 70px; */
     /* top: 3370px; */
     justify-content: center;
@@ -120,7 +120,7 @@ body {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 26px;
     /* identical to box height */
     text-align: center;
