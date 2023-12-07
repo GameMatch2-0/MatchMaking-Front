@@ -1,16 +1,74 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import "../css/cadastro.css"
 import React from "react";
 import DataInput from "../components/DataInput";
 import FormPic from "../components/FormPic";
 import BirthdateComponent from "../components/BirthdateComponent";
 import GenderComponent from "../components/GenderComponent";
+import InteressesModal from "../components/Interesses";
+import PlataformasModal from "../components/PlataformasModal";
+import HobbiesModal from "../components/HobbiesModal";
+import JogosModal from "../components/JogosModal";
+import OrientacaoSexualModal from "../components/OrientacaoSexualModal";
+import LoginModal from "../components/LoginModal";
 
 export default function Cadastro(){
     const navigate = useNavigate();
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
+    };
+
+    const [isModalOpen, setModalOpen] = useState(false);
+
+    const openModal = () => setModalOpen(true);
+    const closeModal = () => setModalOpen(false);
+
+    const [isInteressesModalOpen, setIsInteressesModalOpen] = useState(false);
+    const [isPlataformasModalOpen, setIsPlataformasModalOpen] = useState(false);
+    const [isHobbiesModalOpen, setIsHobbiesModalOpen] = useState(false);
+    const [isJogosModalOpen, setIsJogosModalOpen] = useState(false);
+    const [isOrientacaoSexualModalOpen, setIsOrientacoesSexuaisModalOpen] = useState(false);
+
+    const openInteressesModal = () => {
+        setIsInteressesModalOpen(true);
+    };
+
+    const openPlataformasModal = () => {
+        setIsPlataformasModalOpen(true);
+    };
+
+    const openHobbiesModal = () => {
+        setIsHobbiesModalOpen(true);
+    };
+
+    const openJogosModal = () => {
+        setIsJogosModalOpen(true);
+    };
+
+    const openOrientacaoSexual = () => {
+        setIsOrientacoesSexuaisModalOpen(true);
+    };
+
+    const closeInteressesModal = () => {
+        setIsInteressesModalOpen(false);
+    };
+
+    const closePlataformasModal = () => {
+        setIsPlataformasModalOpen(false);
+    }; 
+    
+    const closeHobbiesModal = () => {
+        setIsHobbiesModalOpen(false);
+    };
+
+    const closeJogosModal = () => {
+        setIsJogosModalOpen(false);
+    };
+
+    const closeOrientacoesSexuaisModal = () => {
+        setIsOrientacoesSexuaisModalOpen(false);
     };
 
     return(
@@ -20,7 +78,7 @@ export default function Cadastro(){
             </div>
 
             <div className="form-data">
-                <h2>Criar Conta</h2>
+                <h2 className="titulo-form">Criar Conta</h2>
 
                 <div className="mandatory-data">
                     <div className="left-data">
@@ -65,16 +123,23 @@ export default function Cadastro(){
 
                     <div className="optional-content">
                         <div className="top-buttons">
-                            <button>+ Jogos favoritos</button>
-                            <button>+ Gêneros favoritos</button>
-                            <button>+ Plataformas</button>
+                            <button onClick={openJogosModal}>+ Jogos favoritos</button>
+                            <button onClick={openInteressesModal}>+ Gêneros favoritos</button>
+                            <button onClick={openPlataformasModal}>+ Plataformas</button>
                         </div>
 
                         <div className="bottom-buttons">
-                            <button>+ Interesses</button>
-                            <button>+ Orientação sexual</button>
+                            <button onClick={openHobbiesModal}>+ Interesses</button>
+                            <button onClick={openOrientacaoSexual}>+ Orientação sexual</button>
                         </div>
                     </div>
+
+                    <InteressesModal isOpen={isInteressesModalOpen} onClose={closeInteressesModal} />
+                    <PlataformasModal isOpen={isPlataformasModalOpen} onClose={closePlataformasModal} />
+                    <HobbiesModal isOpen={isHobbiesModalOpen} onClose={closeHobbiesModal} />
+                    <JogosModal isOpen={isJogosModalOpen} onClose={closeJogosModal} />
+                    <OrientacaoSexualModal isOpen={isOrientacaoSexualModalOpen} onClose={closeOrientacoesSexuaisModal} />
+                    <LoginModal isOpen={isModalOpen} onClose={closeModal} />
 
                     <div className="last-step">
                         <button className="create-account">
@@ -83,7 +148,7 @@ export default function Cadastro(){
                     </div>
 
                     <div className="have-account">
-                        <p>Já tem uma conta? <a href="">Entrar</a></p>
+                        <p>Já tem uma conta? <a onClick={openModal}>Entrar</a>.</p>
                     </div>
                 </div>
             </div>

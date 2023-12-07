@@ -29,7 +29,7 @@ p {
     width: 100%;
 }
 
-.form-data h2 {
+.form-data .titulo-form {
     color: #fff;
     font-size: 24px;
     margin-left: 5vw;
@@ -135,6 +135,7 @@ p {
 
 .have-account a {
     color: #fff;
+    cursor: pointer;
 }
 
 .have-account a:active {

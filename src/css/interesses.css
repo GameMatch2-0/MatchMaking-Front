@@ -43,25 +43,8 @@
     margin-top: 30px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-}
-
-.div-interesses .div-linha1 {
-    display: flex;
-}
-
-.div-interesses .div-linha2 {
-    display: flex;
-}
-
-.div-interesses .div-linha3 {
-    display: flex;
-}
-
-.div-interesses .div-linha4 {
-    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
 }
 
 .div-interesses button:hover{
@@ -69,18 +52,39 @@
     color: black;
 }
 
-.div-interesses button{
-    margin-right: 10px;
-}
-
-.div-interesses .btn-confirmar:hover{
+.btn-confirmar:hover{
    background-color: white;
    color: black;
 }
 
-.div-interesses .btn-confirmar{
-    margin-top: 20px;
+.btn-confirmar{
+    margin-top:50px;
+    width: 120px;
     background-color: transparent;
-    border-style: groove;
+    border: solid 2px #fff;
+    border-radius: 10px;
+    transition: 0.2s;
 }
 
+.div-interesses button {
+    margin: 10px 5px 0 5px;
+    border: solid 1px #fff;
+    border-radius: 20px;
+    background-color: transparent;
+    transition: .2s;
+}
+
+.btn-selecionado {
+    background-color: #2A3EB9;
+}
+
+.div-interesses button.btn-selecionado {
+    background-color: #2A3EB9;
+    color: white;
+}
+
+.div-modal-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
