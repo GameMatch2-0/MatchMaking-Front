@@ -98,17 +98,20 @@ export default function Cadastro(){
         midiaList: [],
     });
 
-    const handleInputChange = (fieldName, value) => {
+    const handleInputChange = (event, parentObject) => {
+        const { name, value } = event.target;
         setFormData(prevData => ({
             ...prevData,
-            usuario: {
-                ...prevData.usuario,
-                [fieldName]: value,
+            [parentObject]: {
+                ...prevData[parentObject],
+                [name]: value,
             },
         }));
-    };
+    };          
 
     const handleCreateAccount = async () => {
+        console.log(formData);
+
         try {
             const response = await axios.post('http://localhost:8080/perfis/novo-cadastro', formData);
             console.log('Resposta do servidor:', response.data);
@@ -129,21 +132,21 @@ export default function Cadastro(){
 
                 <div className="mandatory-data">
                     <div className="left-data">
-                        <DataInput nameInput="Nome" typeInput="text" />
+                        <DataInput nameInput="nome" typeInput="text" onInputChange={(e) => handleInputChange(e, 'usuario')} />
 
-                        <DataInput nameInput="Sobrenome" typeInput="text" onInputChange={handleInputChange} />
+                        <DataInput nameInput="sobrenome" typeInput="text" onInputChange={(e) => handleInputChange(e, 'usuario')} />
 
-                        <DataInput nameInput="Nickname" typeInput="text" onInputChange={handleInputChange} />
+                        <DataInput nameInput="username" typeInput="text" onInputChange={(e) => handleInputChange(e, 'perfil')} />
 
-                        <DataInput nameInput="Telefone" typeInput="text" onInputChange={handleInputChange} />
+                        <DataInput nameInput="contato" typeInput="text" onInputChange={(e) => handleInputChange(e, 'usuario')} />
 
-                        <DataInput nameInput="Email" typeInput="email" onInputChange={handleInputChange} />
+                        <DataInput nameInput="email" typeInput="email" onInputChange={(e) => handleInputChange(e, 'usuario')} />
 
-                        <DataInput nameInput="Senha" typeInput="password" onInputChange={handleInputChange} />
+                        <DataInput nameInput="senha" typeInput="password" onInputChange={(e) => handleInputChange(e, 'usuario')} />
 
-                        <DataInput nameInput="Confirme sua senha" typeInput="password" />
+                        <DataInput nameInput="confirme sua senha" typeInput="password" />
 
-                        <BirthdateComponent onInputChange={handleInputChange} />
+                        <BirthdateComponent onInputChange={(e) => handleInputChange(e, 'usuario')} />
 
                         <GenderComponent onGenderSelect={handleInputChange} />
                     </div>

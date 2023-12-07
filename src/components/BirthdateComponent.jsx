@@ -7,8 +7,14 @@ const BirthdateComponent = ({ onInputChange }) => {
     const [year, setYear] = useState('');
 
     const handleInputChangeWithFormat = () => {
-        const formattedDate = `${year}-${month}-${day}`;
-        onInputChange('dtNascimento', formattedDate);
+        const formattedDate = `${year.padStart(4, '0')}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+        const event = {
+            target: {
+                name: 'dtNascimento',
+                value: formattedDate,
+            }
+        };
+        onInputChange(event, 'usuario');
     };
 
     const handleDayChange = (e) => {
