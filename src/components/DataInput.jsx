@@ -1,11 +1,19 @@
 import '../css/dataInput.css'
-import React from 'react';
+import React, { useState } from 'react';
 
-const DataInput = ({ nameInput, typeInput }) => {
+const DataInput = ({ nameInput, typeInput, onInputChange }) => {
+    const [value, setValue ] = useState('');
+
+    const handleChange = (e) => {
+        const newValue = e.target.value;
+        setValue(newValue);
+        onInputChange(nameInput, newValue);
+    };
+
     return (
         <div className="data-input">
             <p>{nameInput}</p>
-            <input type={typeInput} />
+            <input type={typeInput} value={value} onChange={handleChange}/>
         </div>
     );
 };

@@ -12,6 +12,7 @@ import HobbiesModal from "../components/HobbiesModal";
 import JogosModal from "../components/JogosModal";
 import OrientacaoSexualModal from "../components/OrientacaoSexualModal";
 import LoginModal from "../components/LoginModal";
+import axios from 'axios';
 
 export default function Cadastro(){
     const navigate = useNavigate();
@@ -71,6 +72,52 @@ export default function Cadastro(){
         setIsOrientacoesSexuaisModalOpen(false);
     };
 
+    const [formData, setFormData] = useState({
+        usuario: {
+            nome: '',
+            sobrenome: '',
+            email: '',
+            contato: '',
+            senha: '',
+            dtNascimento: '',
+            identidadeGenero: '',
+        },
+        perfil: {
+            username: '',
+            biografia: '',
+            nota: 5.0,
+            orientacaoSexual: '',
+            procuraAmizade: true,
+            procuraNamoro: false,
+            procuraPlayer2: false,
+            isPremium: false,
+        },
+        generoJogoPerfil: [],
+        interessePerfil: [],
+        consolePerfil: [],
+        midiaList: [],
+    });
+
+    const handleInputChange = (fieldName, value) => {
+        setFormData(prevData => ({
+            ...prevData,
+            usuario: {
+                ...prevData.usuario,
+                [fieldName]: value,
+            },
+        }));
+    };
+
+    const handleCreateAccount = async () => {
+        try {
+            const response = await axios.post('http://localhost:8080/perfis/novo-cadastro', formData);
+            console.log('Resposta do servidor:', response.data);
+            navigate('/profile');
+        } catch (error) {
+            console.error('Erro ao criar conta:', error);
+        }
+    };
+
     return(
         <>
             <div className="header">
@@ -84,17 +131,21 @@ export default function Cadastro(){
                     <div className="left-data">
                         <DataInput nameInput="Nome" typeInput="text" />
 
-                        <DataInput nameInput="Nickname" typeInput="text" />
+                        <DataInput nameInput="Sobrenome" typeInput="text" onInputChange={handleInputChange} />
 
-                        <DataInput nameInput="Email" typeInput="email" />
+                        <DataInput nameInput="Nickname" typeInput="text" onInputChange={handleInputChange} />
 
-                        <DataInput nameInput="Senha" typeInput="password" />
+                        <DataInput nameInput="Telefone" typeInput="text" onInputChange={handleInputChange} />
+
+                        <DataInput nameInput="Email" typeInput="email" onInputChange={handleInputChange} />
+
+                        <DataInput nameInput="Senha" typeInput="password" onInputChange={handleInputChange} />
 
                         <DataInput nameInput="Confirme sua senha" typeInput="password" />
 
-                        <BirthdateComponent />
+                        <BirthdateComponent onInputChange={handleInputChange} />
 
-                        <GenderComponent />
+                        <GenderComponent onGenderSelect={handleInputChange} />
                     </div>
                     
                     <div className="right-data">
@@ -142,7 +193,7 @@ export default function Cadastro(){
                     <LoginModal isOpen={isModalOpen} onClose={closeModal} />
 
                     <div className="last-step">
-                        <button className="create-account">
+                        <button className="create-account" onClick={handleCreateAccount}>
                             Criar Conta
                         </button>
                     </div>

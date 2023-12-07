@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 const GenderSelectButtons = ({ onGenderSelect }) => {
     const [selectedGender, setSelectedGender] = useState('');
 
-    const handleSelect = (gender) => {
+    const handleGenderSelect = (gender) => {
         setSelectedGender(gender);
         onGenderSelect(gender);
     };
@@ -16,21 +16,21 @@ const GenderSelectButtons = ({ onGenderSelect }) => {
             <div className="gender-options">
                 <button
                     type="button"
-                    onClick={() => handleSelect('Homem')}
+                    onClick={() => handleGenderSelect('Homem')}
                     style={selectedGender === 'Homem' ? { backgroundColor: 'white', color: '#4150B7' } : {}}
                 >
                     Homem
                 </button>
                 <button
                     type="button"
-                    onClick={() => handleSelect('Mulher')}
+                    onClick={() => handleGenderSelect('Mulher')}
                     style={selectedGender === 'Mulher' ? { backgroundColor: 'white', color: '#4150B7' } : {}}
                 >
                     Mulher
                 </button>
                 <button
                     type="button"
-                    onClick={() => handleSelect('Outro')}
+                    onClick={() => handleGenderSelect('Outro')}
                     style={selectedGender === 'Outro' ? { backgroundColor: 'white', color: '#4150B7' } : {}}
                 >
                     Outro
