@@ -12,31 +12,39 @@ export default function Footer() {
                 <div className="div-footer">
                     <div className="esquerda"><h4>MatchMaking</h4>
                         <div className="div-links">
-                        <div className="esquerda-produtos">
-                            <h2>Produtos</h2>
-                            <p>App</p>
-                            <p>Planos</p>
+                            <div className="esquerda-produtos">
+                                <h2>Produtos</h2>
+                                <p>App</p>
+                                <p>Planos</p>
+                            </div>
+                            <div className="esquerda-aprender">
+                                <h2>Aprender</h2>
+                                <p>Jogos</p>
+                                <p>Saúde</p>
+                            </div>
+                            <div className="esquerda-mais">
+                                <h2>Mais da MatchMaking</h2>
+                                <p>Jornada</p>
+                                <p>Contato</p>
+                            </div>
                         </div>
-                        <div className="esquerda-aprender">
-                            <h2>Aprender</h2>
-                            <p>Jogos</p>
-                            <p>Saúde</p>
-                        </div>
-                        <div className="esquerda-mais">
-                            <h2>Mais da MatchMaking</h2>
-                            <p>Jornada</p>
-                            <p>Contato</p>
-                        </div>
-                        </div>
+                    </div>
+                    <div className="meio">
+                        <p className="copyright">© 2023 MatchMaking.com</p>
+
                     </div>
 
 
                     <div className="direita">
-                        <img  src={insta} alt=""/>
-                        <img  src={twitter} alt="" />
-                        <img  src={face} alt="" />
+                        <img src={insta} alt="" className="insta" />
+                        <img src={twitter} alt="" className="twitter" />
+                        <img src={face} alt="" className="face" />
                     </div>
                 </div>
+
+
+                <p className="termos"> <a href="">Terms of Service</a> | <a href="">Privacy Policy</a> | <a href="">Refund Policy</a> | <a href="">Acessibility Policy</a></p>
+
 
             </footer>
         </>
