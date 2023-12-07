@@ -1,3 +1,8 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .div-footer {
     background-image: url("../assets/footer.png");
     width: 100vw;
@@ -31,7 +36,19 @@
 }
 
 .direita img {
-    height: 20px;
+    height: 3vh;
+    margin: 0 0.3vh;
+}
+
+
+.esquerda {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 40%;
+    padding-right: 0;
+
 }
 
 .esquerda h2 {
@@ -42,4 +59,71 @@
 .esquerda p {
     font-size: 1.1vw;
     margin: 0 2vw 1vh 0;
+}
+
+.meio {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 40%;
+    padding-right: 0;
+    margin-left: 450px;
+
+}
+
+/* Terms of Service | Privacy Policy | Refund Policy | Acessibility Policy */
+
+.termos {
+    border-top: 2px solid #000000;
+    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.5);
+
+    bottom: 0;
+    width: 100vw;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 26px;
+    /* identical to box height */
+    text-align: center;
+    background-color: #f5f5f5;
+
+}
+
+.termos a {
+    margin: 0 1.3vh 0;
+}
+
+.termos a:hover {
+    color: #383838;
+    text-decoration: underline;
+    cursor: pointer
+}
+
+/* @ 2023 matchmaking.co */
+
+.copyright {
+
+    /* position: ; */
+    display: flex;
+
+    width: 13.7vw;
+    height: 26px;
+    padding-top: 290px;
+    /* margin-right: 70px; */
+    /* top: 3370px; */
+    justify-content: center;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 26px;
+    /* identical to box height */
+    text-align: center;
+
+    color: #FFFFFF;
 }
