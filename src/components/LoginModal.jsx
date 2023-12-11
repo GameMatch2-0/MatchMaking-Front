@@ -8,8 +8,8 @@ const LoginModal = ({ isOpen, onClose }) => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [changeAuthMethod, setChangeAuthMethod] = useState(false);
-
     const [rememberUser, setRememberUser] = useState(false);
+    const [showError, setShowError] = useState(false);
 
     useEffect(() => {
         const rememberedEmail = sessionStorage.getItem('email');
@@ -48,6 +48,7 @@ const LoginModal = ({ isOpen, onClose }) => {
             onClose(); 
         } catch (error) {
             console.error('Erro ao autenticar:', error);
+            setShowError(true);
         }
     };
     const [isModalOpen, setModalOpen] = useState(false);
@@ -81,9 +82,12 @@ const LoginModal = ({ isOpen, onClose }) => {
                         />
                          <label>Lembrar identificação do usuário</label>
                     </div>
-                    <button className='btn-entrar-login' type="button" onClick={handleLogin}>
-                        Entrar
-                    </button>
+                    {showError && <div className="error-message">Usuário ou senha incorretos.</div>}
+                    <div className="botao">
+                        <button className='btn-entrar-login' type="button" onClick={handleLogin}>
+                            Entrar
+                        </button>
+                    </div>
                     <div className="login-method" onClick={openModal} >
                         <p className='esqueci-senha'>Esqueci minha senha</p>
                     </div>

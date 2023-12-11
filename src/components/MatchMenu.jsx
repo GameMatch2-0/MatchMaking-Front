@@ -11,6 +11,7 @@ import React from 'react';
 const MatchMenu = () => {
     const [data, setData] = useState([]);
     const [currentScroll, setCurrentScroll] = useState(0);
+    const [currentImage, setCurrentImage] = useState('https://picsum.photos/600/300')
 
     useEffect(() => {
         setData(userData);
@@ -20,6 +21,9 @@ const MatchMenu = () => {
         const carousel = document.querySelector('.carousel');
         setCurrentScroll(currentScroll + carousel.clientHeight);
         carousel.scrollTop = currentScroll;
+
+        const newImage = `https://picsum.photos/600/300?random=${Math.random()}`;
+        setCurrentImage(newImage);
     };
 
     return (
@@ -30,7 +34,7 @@ const MatchMenu = () => {
                     return ( 
                         <div className="match-info" key={id}>
                             <div className="album">
-                                <img src={foto} alt="foto perfil" />
+                                <img src={currentImage} alt="foto perfil" />
                             </div>
 
                             <div className="profile-info">
