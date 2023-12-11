@@ -72,51 +72,123 @@ export default function Cadastro(){
         setIsOrientacoesSexuaisModalOpen(false);
     };
 
-    const [formData, setFormData] = useState({
-        usuario: {
-            nome: '',
-            sobrenome: '',
-            email: '',
-            contato: '',
-            senha: '',
-            dtNascimento: '',
-            identidadeGenero: '',
-        },
-        perfil: {
-            username: '',
-            biografia: '',
-            nota: 5.0,
-            orientacaoSexual: '',
-            procuraAmizade: true,
-            procuraNamoro: false,
-            procuraPlayer2: false,
-            isPremium: false,
-        },
-        generoJogoPerfil: [],
-        interessePerfil: [],
-        consolePerfil: [],
-        midiaList: [],
-    });
+    const [nome, setNome] = useState('');
+    const [sobrenome, setSobrenome] = useState('');
+    const [email, setEmail] = useState('');
+    const [contato, setContato] = useState('');
+    const [senha, setSenha] = useState('');
+    const [identidadeGenero, setIdentidadeGenero] = useState('');
+    const [username, setUsername] = useState('');
 
-    const handleInputChange = (event, parentObject) => {
-        const { name, value } = event.target;
-        setFormData(prevData => ({
-            ...prevData,
-            [parentObject]: {
-                ...prevData[parentObject],
-                [name]: value,
-            },
-        }));
-    };          
+    const handleNomeChange = (event) => {
+        const { value } = event.target;
+        setNome(value);
+    };
+      
+    const handleSobrenomeChange = (event) => {
+        const { value } = event.target;
+        setSobrenome(value);
+    };
+
+    const handleEmailChange = (event) => {
+        const { value } = event.target;
+        setEmail(value);
+    };
+
+    const handleContatoChange = (event) => {
+        const { value } = event.target;
+        setContato(value);
+    };
+
+    const handleSenhaChange = (event) => {
+        const { value } = event.target;
+        setSenha(value);
+    };
+
+    const handleGenderChange = (selectedGender) => {
+        setIdentidadeGenero(selectedGender);
+    };            
+
+    const handleUsernameChange = (event) => {
+        const { value } = event.target;
+        setUsername(value);
+    };
 
     const handleCreateAccount = async () => {
-        console.log(formData.usuario);
+        const orientacaoSexualLocal = JSON.parse(localStorage.getItem('orientacaoSexual'));
+        const orientacaoSexual = orientacaoSexualLocal[0];
+        const birthdate = localStorage.getItem('birthdate');
+
+        const newData = {
+            usuario: {
+                nome: nome,
+                sobrenome: sobrenome,
+                email: email,
+                contato: contato,
+                senha: senha,
+                dtNascimento: birthdate,
+                identidadeGenero: identidadeGenero
+            },
+            perfil: {
+                username: username,
+                biografia: 'Olá, estou utilizando o MatchMaking!',
+                nota: 5.0,
+                orientacaoSexual: orientacaoSexual,
+                procuraAmizade: true,
+                procuraNamoro: false,
+                procuraPlayer2: false,
+                isPremium: false
+            },
+            generoJogoPerfil:[
+                {
+                    generoJogoId: 1,
+                    isVisible: true
+                },
+                {
+                    generoJogoId: 2,
+                    isVisible: true
+                }
+            ],
+            interessePerfil:[
+                {
+                    interesseId: 1,
+                    isVisible: true
+                },
+                {
+                    interesseId: 2,
+                    isVisible: true
+                }
+            ],
+            consolePerfil:[
+                {
+                    consoleId: 1,
+                    isVisible: true
+                },
+                {
+                    consoleId: 2,
+                    isVisible: true
+                }
+            ],
+            midiaList:[
+                {
+                    link: "https://www.youtube.com/example",
+                    isVisible: true
+                },
+                {
+                    link: "https://www.instagram.com/example",
+                    isVisible: false
+                }
+            ]
+        };
 
         try {
-            localStorage.setItem('formData', JSON.stringify(formData));
+            console.log('Objeto enviado para o servidor:', newData);
+
+            const response = await axios.post('http://localhost:8080/perfis/novo-cadastro', newData);
+            console.log(response.data);
             navigate('/profile');
         } catch (error) {
-            console.error('Erro ao criar conta:', error);
+            console.error('Erro ao criar a conta:', error);
         }
     };
 
@@ -131,23 +203,45 @@ export default function Cadastro(){
 
                 <div className="mandatory-data">
                     <div className="left-data">
-                        <DataInput nameInput="nome" typeInput="text" onInputChange={(e) => handleInputChange(e, 'usuario')} />
+                        <DataInput 
+                            nameInput="nome" 
+                            typeInput="text"
+                            onInputChange={handleNomeChange}
+                        />
+                        <DataInput 
+                            nameInput="sobrenome" 
+                            typeInput="text" 
+                            onInputChange={handleSobrenomeChange}
+                        />
+                        <DataInput 
+                            nameInput="username" 
+                            typeInput="text" 
+                            onInputChange={handleUsernameChange}
+                        />
+                        <DataInput 
+                            nameInput="contato" 
+                            typeInput="text" 
+                            onInputChange={handleContatoChange}
+                        />
+                        <DataInput 
+                            nameInput="email" 
+                            typeInput="email" 
+                            onInputChange={handleEmailChange}
+                        />
+                        <DataInput 
+                            nameInput="senha" 
+                            typeInput="password"
+                            onInputChange={handleSenhaChange}
+                        />
+                        <DataInput 
+                            nameInput="confirme sua senha" 
+                            typeInput="password" 
+                        />
+                        <BirthdateComponent />
+                        <GenderComponent 
+                            onGenderSelect={handleGenderChange} 
+                        />
 
-                        <DataInput nameInput="sobrenome" typeInput="text" onInputChange={(e) => handleInputChange(e, 'usuario')} />
-
-                        <DataInput nameInput="username" typeInput="text" onInputChange={(e) => handleInputChange(e, 'perfil')} />
-
-                        <DataInput nameInput="contato" typeInput="text" onInputChange={(e) => handleInputChange(e, 'usuario')} />
-
-                        <DataInput nameInput="email" typeInput="email" onInputChange={(e) => handleInputChange(e, 'usuario')} />
-
-                        <DataInput nameInput="senha" typeInput="password" onInputChange={(e) => handleInputChange(e, 'usuario')} />
-
-                        <DataInput nameInput="confirme sua senha" typeInput="password" />
-
-                        <BirthdateComponent onInputChange={(e) => handleInputChange(e, 'usuario')} />
-
-                        <GenderComponent onGenderSelect={handleInputChange} />
                     </div>
                     
                     <div className="right-data">
