@@ -1,4 +1,3 @@
-// src/LoginModal.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../css/login.css'
@@ -13,15 +12,13 @@ const LoginModal = ({ isOpen, onClose }) => {
     const [rememberUser, setRememberUser] = useState(false);
 
     useEffect(() => {
-        // Verifica se deve lembrar a identificação do usuário ao montar o componente
         const rememberedEmail = sessionStorage.getItem('email');
         const rememberedUserID = sessionStorage.getItem('userID');
         const rememberedName = sessionStorage.getItem('nome');
 
         if (rememberUser && rememberedEmail && rememberedUserID && rememberedName) {
             setEmail(rememberedEmail);
-            setSenha(''); // Considerando que você não queira preencher a senha ao lembrar o usuário
-            // Preencha outros estados conforme necessário
+            setSenha('');
         }
     }, [rememberUser]);
 
@@ -43,7 +40,6 @@ const LoginModal = ({ isOpen, onClose }) => {
             sessionStorage.setItem('email', response.data.email)
 
             if (rememberUser) {
-                // Salva informações do usuário se a opção "Lembrar identificação do usuário" estiver marcada
                 sessionStorage.setItem('nome', response.data.nome);
                 sessionStorage.setItem('email', response.data.email);
             }
@@ -65,7 +61,7 @@ const LoginModal = ({ isOpen, onClose }) => {
                 <span className="close" onClick={onClose}>&times;</span>
                 <h2>Login</h2>
                 <form>
-                    <label>Nome de usuário:</label>
+                    <label>Email:</label>
                     <input
                         type="text"
                         value={email}
@@ -92,9 +88,6 @@ const LoginModal = ({ isOpen, onClose }) => {
                         <p className='esqueci-senha'>Esqueci minha senha</p>
                     </div>
                     <Recuperacao isOpen={isModalOpen} onClose={closeModal} />
-
-
-
                 </form>
             </div>
         </div>

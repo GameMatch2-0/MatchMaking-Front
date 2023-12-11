@@ -5,3 +5,9 @@
     border: solid 2px #fff;
     border-radius: 10px;
 }
+
+.fav-card p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 2px;
+}

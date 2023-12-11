@@ -186,6 +186,18 @@ export default function Cadastro(){
 
             const response = await axios.post('http://localhost:8080/perfis/novo-cadastro', newData);
             console.log(response.data);
+
+            const loginResponse = await axios.post('http://localhost:8080/usuarios/login', {
+                email,
+                senha,
+            });
+
+            sessionStorage.setItem('token', loginResponse.data.token)
+            sessionStorage.setItem('userID', loginResponse.data.userId)
+            sessionStorage.setItem('nome', loginResponse.data.nome)
+            sessionStorage.setItem('email', loginResponse.data.email)
+            sessionStorage.setItem('username', username)
+
             navigate('/profile');
         } catch (error) {
             console.error('Erro ao criar a conta:', error);

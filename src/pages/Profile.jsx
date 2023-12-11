@@ -11,8 +11,9 @@ import InteressesModal from "../components/Interesses";
 import PlataformasModal from "../components/PlataformasModal";
 import HobbiesModal from "../components/HobbiesModal";
 import JogosModal from "../components/JogosModal";
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router';
+import axios from 'axios';
 
 export default function Profile() {
     const navigate = useNavigate();
@@ -21,18 +22,31 @@ export default function Profile() {
         navigate('/');
     };
 
-    const formDataString = localStorage.getItem('formData');
-    const formData = formDataString ? JSON.parse(formDataString) : {};
+    const [nomeCompleto, setNomeCompleto] = useState('');
+    const [username, setUsername] = useState('');
 
-    const nickname = formData.usuario ? formData.usuario.nickname : '';
-    const nome = formData.usuario ? formData.usuario.nome : '';
-    const sobrenome = formData.usuario ? formData.usuario.sobrenome : '';
-
-    const userInfo = {
-        nickname: 'Pipintas',
-        realname: 'Bruno Pimentel',
-        rate: 5.0,
-    }
+    useEffect(() => {
+        async function fetchUserInfo() {
+          const userID = sessionStorage.getItem('userID');
+          const token = sessionStorage.getItem('token');
+    
+          if (userID && token) {
+            try {
+              const userInfo = await axios.get(`http://localhost:8080/usuarios/${userID}`, {
+                headers: {
+                  'Authorization': `Bearer ${token}`
+                }
+              });
+              setNomeCompleto(userInfo.data.nomeCompleto);
+              setUsername(sessionStorage.getItem('username'));
+            } catch (error) {
+              console.error('Erro ao buscar informações do usuário:', error);
+            }
+          }
+        }
+    
+        fetchUserInfo();
+      }, []);
 
     const friendsList = [
     ];
@@ -150,11 +164,11 @@ export default function Profile() {
 
                         <div className="usernames">
                             <p className="nickname">
-                                {userInfo.nickname}
+                                {username}
                             </p>
 
                             <p className="real-name">
-                                {userInfo.realname}
+                                {nomeCompleto}
                             </p>
                         </div>
 
@@ -162,7 +176,7 @@ export default function Profile() {
                             <img src={star} alt="estrela de avaliação" className="rate-icon" />
 
                             <p className="rate">
-                                {userInfo.rate}
+                                5
                             </p>
                         </div>
                     </div>
