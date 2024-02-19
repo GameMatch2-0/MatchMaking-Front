@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../css/login.css'
 import Recuperacao from '../components/Recuperacao';
-
+import { app, auth, firestore } from "../services/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const LoginModal = ({ isOpen, onClose }) => {
     const [email, setEmail] = useState('');
@@ -25,12 +26,21 @@ const LoginModal = ({ isOpen, onClose }) => {
 
     const handleLogin = async () => {
         try {
-            
+            const userCredential = await signInWithEmailAndPassword(auth, email, senha);
+
+            const user = userCredential.user;
+
+            console.log('Token Firebase:', user.refreshToken);
+
+            sessionStorage.setItem('tokenFirebase', user.refreshToken);
+            sessionStorage.setItem('userIDFirebase', user.uid);
+            sessionStorage.setItem('nomeFirebase', user.displayName);
+            sessionStorage.setItem('emailFirebase', user.email);
+
             const response = await axios.post('http://localhost:8080/usuarios/login', {
                 email,
                 senha,
             });
-
            
             console.log('Token:', response.data.token);
 
@@ -43,6 +53,8 @@ const LoginModal = ({ isOpen, onClose }) => {
                 sessionStorage.setItem('nome', response.data.nome);
                 sessionStorage.setItem('email', response.data.email);
             }
+
+
 
             window.location.href = 'http://localhost:5173/profile'
             onClose(); 

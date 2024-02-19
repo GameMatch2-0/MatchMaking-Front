@@ -13,6 +13,10 @@ import JogosModal from "../components/JogosModal";
 import OrientacaoSexualModal from "../components/OrientacaoSexualModal";
 import LoginModal from "../components/LoginModal";
 import axios from 'axios';
+import { app, auth, firestore } from "../services/firebase";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import InputMask from 'react-input-mask';
 
 export default function Cadastro(){
     const navigate = useNavigate();
@@ -34,7 +38,7 @@ export default function Cadastro(){
 
     const openInteressesModal = () => {
         setIsInteressesModalOpen(true);
-    };
+    }; 
 
     const openPlataformasModal = () => {
         setIsPlataformasModalOpen(true);
@@ -79,6 +83,7 @@ export default function Cadastro(){
     const [senha, setSenha] = useState('');
     const [identidadeGenero, setIdentidadeGenero] = useState('');
     const [username, setUsername] = useState('');
+    const [confirmSenhaColor, setConfirmSenhaColor] = useState('white');
 
     const handleNomeChange = (event) => {
         const { value } = event.target;
@@ -97,13 +102,23 @@ export default function Cadastro(){
 
     const handleContatoChange = (event) => {
         const { value } = event.target;
-        setContato(value);
+        setContato(value.replace(/\D/g, ''));
     };
 
     const handleSenhaChange = (event) => {
         const { value } = event.target;
         setSenha(value);
     };
+
+    const handleConfirmSenhaChange = (event) => {
+        const { value } = event.target;
+    
+        if (value !== senha) {
+            setConfirmSenhaColor('tomato');
+        } else {
+            setConfirmSenhaColor('white');
+        }
+    };   
 
     const handleGenderChange = (selectedGender) => {
         setIdentidadeGenero(selectedGender);
@@ -198,7 +213,46 @@ export default function Cadastro(){
             sessionStorage.setItem('email', loginResponse.data.email)
             sessionStorage.setItem('username', username)
 
-            navigate('/profile');
+            createUserWithEmailAndPassword(auth, email, senha)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    console.log('Usuário criado com sucesso:', user);
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.log('Erro ao criar usuário:', errorCode, errorMessage);
+                });
+
+            const plataformas = JSON.parse(localStorage.getItem('plataformasFavoritas'))
+            const generosFavoritos = JSON.parse(localStorage.getItem('interessesFavoritos'));
+            const hobbies = JSON.parse(localStorage.getItem('hobbiesFavoritos'));
+            const jogosFavoritos = JSON.parse(localStorage.getItem('jogosFavoritos'));
+
+            const docRef = await addDoc(collection(firestore, "users"), {
+                biografia: newData.perfil.biografia,
+                consoles: plataformas,
+                contato: newData.usuario.contato,
+                dt_cadastro: Timestamp.now(),
+                deleted: false,
+                dt_nascimento: birthdate,
+                email: newData.usuario.email,
+                generos_favoritos: generosFavoritos,
+                id_usuario: loginResponse.data.userId,
+                identidadeGenero: newData.usuario.identidadeGenero,
+                interesses: hobbies,
+                jogos_favoritos: jogosFavoritos, 
+                nome: newData.usuario.nome,
+                nota: newData.perfil.nota,
+                orientacao_sexual: newData.perfil.orientacaoSexual,
+                senha: senha,
+                sobrenome: sobrenome,
+                username: username,
+            });
+
+            localStorage.setItem('docId', docRef.id);
+
+            window.location.href = 'http://localhost:5173/profile'
         } catch (error) {
             console.error('Erro ao criar a conta:', error);
         }
@@ -234,6 +288,8 @@ export default function Cadastro(){
                             nameInput="contato" 
                             typeInput="text" 
                             onInputChange={handleContatoChange}
+                            mask="(99)99999-9999"
+                            maskChar={null}
                         />
                         <DataInput 
                             nameInput="email" 
@@ -248,6 +304,8 @@ export default function Cadastro(){
                         <DataInput 
                             nameInput="confirme sua senha" 
                             typeInput="password" 
+                            onInputChange={handleConfirmSenhaChange}
+                            style={{ color: confirmSenhaColor }}
                         />
                         <BirthdateComponent />
                         <GenderComponent 

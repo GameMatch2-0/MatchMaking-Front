@@ -7,12 +7,16 @@ const PlataformasModal = ({ isOpen, onClose }) => {
     const adicionarOuRemoverPlataforma = (plataforma) => {
         setPlataformasSelecionadas(prevState => {
             if (prevState.includes(plataforma)) {
-                return prevState.filter(plataforma => plataforma !== plataforma);
+                return prevState.filter(plat => plat !== plataforma);
             } else {
-                return [...prevState, plataforma];
+                if (prevState.length < 5) {
+                    return [...prevState, plataforma];
+                } else {
+                    return prevState;
+                }
             }
         });
-    };
+    };    
 
     const confirmarPlataformas = () => {
         console.log('plataformas selecionadas:', plataformasSelecionadas);

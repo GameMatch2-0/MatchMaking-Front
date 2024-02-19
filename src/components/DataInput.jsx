@@ -1,7 +1,8 @@
 import '../css/dataInput.css'
 import React, { useState } from 'react';
+import InputMask from 'react-input-mask';
 
-const DataInput = ({ nameInput, typeInput, onInputChange }) => {
+const DataInput = ({ nameInput, typeInput, onInputChange, mask, style }) => {
     const [value, setValue] = useState('');
 
     const handleChange = (e) => {
@@ -12,12 +13,23 @@ const DataInput = ({ nameInput, typeInput, onInputChange }) => {
     return (
         <div className="data-input">
             <p>{nameInput}</p>
-            <input
-                name={nameInput}
-                type={typeInput}
-                value={value}
-                onChange={handleChange}
-            />
+            {mask ? (
+                <InputMask
+                    mask={mask}
+                    value={value}
+                    onChange={handleChange}
+                >
+                    {(inputProps) => <input {...inputProps} name={nameInput} type={typeInput} style={style || {}} />}
+                </InputMask>
+            ) : (
+                <input
+                    name={nameInput}
+                    type={typeInput}
+                    value={value}
+                    onChange={handleChange}
+                    style={style || {}}
+                />
+            )}
         </div>
     );
 };

@@ -9,7 +9,11 @@ const OrientacaoSexualModal = ({ isOpen, onClose }) => {
             if (prevState.includes(orientacao)) {
                 return prevState.filter(orientacao => orientacao !== orientacao);
             } else {
-                return [...prevState, orientacao];
+                if (prevState.length < 1) {
+                    return [...prevState, orientacao];
+                } else {
+                    return prevState;
+                }
             }
         });
     };

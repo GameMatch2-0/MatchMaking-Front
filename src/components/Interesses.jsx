@@ -9,7 +9,11 @@ const InteressesModal = ({ isOpen, onClose }) => {
             if (prevState.includes(genero)) {
                 return prevState.filter(interesse => interesse !== genero);
             } else {
-                return [...prevState, genero];
+                if (prevState.length < 5) {
+                    return [...prevState, genero];
+                } else {
+                    return prevState;
+                }
             }
         });
     };

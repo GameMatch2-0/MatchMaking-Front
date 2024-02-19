@@ -7,9 +7,13 @@ const HobbiesModal = ({ isOpen, onClose }) => {
     const adicionarOuRemoverHobbie = (hobbie) => {
         setHobbiesSelecionados(prevState => {
             if (prevState.includes(hobbie)) {
-                return prevState.filter(hobbie => hobbie !== hobbie);
+                return prevState.filter(hob => hob !== hobbie);
             } else {
-                return [...prevState, hobbie];
+                if (prevState.length < 5) {
+                    return [...prevState, hobbie];
+                } else {
+                    return prevState;
+                }
             }
         });
     };

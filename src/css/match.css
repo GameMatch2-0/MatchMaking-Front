@@ -64,7 +64,7 @@
 
 .hobbies-section {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .hobbie {
@@ -74,11 +74,15 @@
     width: 30%;
     text-align: center;
     margin-bottom: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
 }
 
 .jogos-section {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .jogo {
@@ -88,11 +92,15 @@
     width: 30%;
     text-align: center;
     margin-bottom: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
 }
 
 .generos-section {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .genero {
@@ -102,11 +110,15 @@
     width: 30%;
     text-align: center;
     margin-bottom: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
 }
 
 .consoles-section {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .console {
@@ -116,6 +128,10 @@
     width: 30%;
     text-align: center;
     margin-bottom: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-right: 10px;
 }
 
 .match-options {

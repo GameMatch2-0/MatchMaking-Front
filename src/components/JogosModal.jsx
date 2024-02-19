@@ -7,17 +7,21 @@ const JogosModal = ({ isOpen, onClose }) => {
     const adicionarOuRemoverJogo = (jogo) => {
         setJogosSelecionados(prevState => {
             if (prevState.includes(jogo)) {
-                return prevState.filter(jogo => jogo !== jogo);
+                return prevState.filter(j => j !== jogo);
             } else {
-                return [...prevState, jogo];
+                if (prevState.length < 5) {
+                    return [...prevState, jogo];
+                } else {
+                    return prevState;
+                }
             }
         });
     };
-
+    
     const confirmarJogos = () => {
         console.log('jogos selecionados:', jogosSelecionados);
 
-        const jogosEmString = JSON.stringify(jogosSelecionados);
+        const jogosEmString = JSON.stringify(jogosSelecionados);    
         localStorage.setItem('jogosFavoritos', jogosEmString);
         onClose();
     };

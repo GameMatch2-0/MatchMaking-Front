@@ -7,7 +7,6 @@ import face from '../assets/face.png'
 export default function Footer() {
     return (
         <>
-
             <footer>
                 <div className="div-footer">
                     <div className="esquerda"><h4>MatchMaking</h4>
@@ -29,11 +28,10 @@ export default function Footer() {
                             </div>
                         </div>
                     </div>
+
                     <div className="meio">
                         <p className="copyright">©2023</p>
-
                     </div>
-
 
                     <div className="direita">
                         <img src={insta} alt="" className="insta" />
@@ -41,11 +39,6 @@ export default function Footer() {
                         <img src={face} alt="" className="face" />
                     </div>
                 </div>
-
-
-                <p className="termos"> <a href="">Terms of Service</a> | <a href="">Privacy Policy</a> | <a href="">Refund Policy</a> | <a href="">Acessibility Policy</a></p>
-
-
             </footer>
         </>
     )

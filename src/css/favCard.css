@@ -11,3 +11,8 @@
     text-overflow: ellipsis;
     margin: 0 2px;
 }
+
+.fav-card img {
+    width: 100%;
+    border-radius: 10px;
+}

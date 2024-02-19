@@ -2,6 +2,7 @@ import '../css/profile.css'
 import foto from '../assets/foto.png'
 import star from '../assets/star.png'
 import edit from '../assets/edit.png'
+import coelho from '../assets/logo-coelho.jpg'
 import Friend from '../components/Friend.jsx';
 import Chat from '../components/Chat.jsx';
 import Search from '../components/Search.jsx';
@@ -14,69 +15,104 @@ import JogosModal from "../components/JogosModal";
 import React, {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
+import { app, auth, firestore } from "../services/firebase";
+import { collection, doc, getDoc, getDocs, query, where} from "firebase/firestore";
 
 export default function Profile() {
     const navigate = useNavigate();
 
     const returnIndex = async () => {
         navigate('/');
-    };
+    };  
 
     const [nomeCompleto, setNomeCompleto] = useState('');
     const [username, setUsername] = useState('');
+    const [favGameCard, setFavGameCard] = useState([]);
+    const [favInteresseCard, setFavInteresseCard] = useState([]);
+    const [favPlataformaCard, setFavPlataformaCard] = useState([]);
+    const [favHobbieCard, setFavHobbieCard] = useState([]);
 
     useEffect(() => {
         async function fetchUserInfo() {
-          const userID = sessionStorage.getItem('userID');
-          const token = sessionStorage.getItem('token');
+            const userID = sessionStorage.getItem('userID');
+            const token = sessionStorage.getItem('token');
     
-          if (userID && token) {
-            try {
-              const userInfo = await axios.get(`http://localhost:8080/usuarios/${userID}`, {
-                headers: {
-                  'Authorization': `Bearer ${token}`
+            if (userID && token) {
+                try {
+                    const userInfo = await axios.get(`http://localhost:8080/usuarios/${userID}`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+                    setNomeCompleto(userInfo.data.nomeCompleto);
+                    setUsername(sessionStorage.getItem('username'));
+
+                    const usersRef = collection(firestore, "users");
+
+                    const q = query(usersRef, where("id_usuario", "==", userID));
+
+                    const querySnapshot = await getDocs(q);
+
+                    if (!querySnapshot.empty) {
+                        const doc = querySnapshot.docs[0];
+                        localStorage.setItem('docId', doc.id);
+                    }
+                    
+                    const docId = localStorage.getItem('docId');
+    
+                    if (docId) {
+                        const docRef = doc(firestore, "users", docId);
+                        const docData = await getDoc(docRef);
+    
+                        if (docData.exists()) {
+                            const data = docData.data();
+                            const { username, jogos_favoritos, generos_favoritos, consoles, interesses } = data;
+                        
+                            const favGameCardData = jogos_favoritos ? jogos_favoritos.map(jogo => ({
+                                name: jogo,
+                                image: foto
+                            })) : [];
+                        
+                            const favInteresseCardData = generos_favoritos ? generos_favoritos.map(interesse => ({
+                                name: interesse,
+                                image: foto
+                            })) : [];
+                        
+                            const favPlataformaCardData = consoles ? consoles.map(console => ({
+                                name: console,
+                                image: foto
+                            })) : [];
+                        
+                            const favHobbieCardData = interesses ? interesses.map(hobbie => ({
+                                name: hobbie,
+                                image: foto
+                            })) : [];
+                        
+                            setFavGameCard(favGameCardData);
+                            setFavInteresseCard(favInteresseCardData);
+                            setFavPlataformaCard(favPlataformaCardData);
+                            setFavHobbieCard(favHobbieCardData);
+                            setUsername(username);
+                        } else {
+                            console.log("Nenhum documento encontrado!");
+                        }
+                    } else {
+                        console.log("ID do documento não encontrado no localStorage!");
+                    }
+                } catch (error) {
+                    console.error('Erro ao buscar informações do usuário:', error);
                 }
-              });
-              setNomeCompleto(userInfo.data.nomeCompleto);
-              setUsername(sessionStorage.getItem('username'));
-            } catch (error) {
-              console.error('Erro ao buscar informações do usuário:', error);
             }
-          }
         }
     
         fetchUserInfo();
-      }, []);
+    }, []);    
 
     const friendsList = [
     ];
 
     const chatList = [
-    ];
-
-    const jogosFavoritos = JSON.parse(localStorage.getItem('jogosFavoritos'));
-    const favGameCard = jogosFavoritos.map(jogo => ({
-        name: jogo,
-        image: foto
-    }));  
-    
-    const interessesFavoritos = JSON.parse(localStorage.getItem('interessesFavoritos'));
-    const favInteresseCard = interessesFavoritos.map(interesse => ({
-        name: interesse,
-        image: foto
-    }));
-    
-    const plataformasFavoritas = JSON.parse(localStorage.getItem('plataformasFavoritas'));
-    const favPlataformaCard = plataformasFavoritas.map(plataforma => ({
-        name: plataforma,
-        image: foto
-    }));
-
-    const hobbiesFavoritos = JSON.parse(localStorage.getItem('hobbiesFavoritos'));
-    const favHobbieCard = hobbiesFavoritos.map(hobbie => ({
-        name: hobbie,
-        image: foto
-    }));
+    ]; 
 
     const [headerColor, setHeaderColor] = useState('linear-gradient(120deg, #2032a7, #4150B7)');
     const [slideBarColor, setSlideBarColor] = useState('#4150B7');
@@ -230,7 +266,7 @@ export default function Profile() {
 
                                         <div className="rolar-fav">
                                             {favGameCard.map((favGameCard, index) => (
-                                                <FavCard key={index} name={favGameCard.name} image={favGameCard.image} />
+                                                <FavCard key={index} name={favGameCard.name} image={coelho} />
                                             ))}
                                         </div>
                                     </div>
@@ -244,7 +280,7 @@ export default function Profile() {
 
                                         <div className="rolar-fav">
                                             {favInteresseCard.map((favInteresseCard, index) => (
-                                                <FavCard key={index} name={favInteresseCard.name} image={favInteresseCard.image} />
+                                                <FavCard key={index} name={favInteresseCard.name} image={coelho} />
                                             ))}
                                         </div>
                                     </div>
@@ -258,7 +294,7 @@ export default function Profile() {
 
                                         <div className="rolar-fav">
                                             {favPlataformaCard.map((favPlataformaCard, index) => (
-                                                <FavCard key={index} name={favPlataformaCard.name} image={favPlataformaCard.image} />
+                                                <FavCard key={index} name={favPlataformaCard.name} image={coelho} />
                                             ))}
                                         </div>
                                     </div>
@@ -272,7 +308,7 @@ export default function Profile() {
 
                                         <div className="rolar-fav">
                                             {favHobbieCard.map((favHobbieCard, index) => (
-                                                <FavCard key={index} name={favHobbieCard.name} image={favHobbieCard.image} />
+                                                <FavCard key={index} name={favHobbieCard.name} image={coelho} />
                                             ))}
                                         </div>
                                     </div>
