@@ -223,19 +223,19 @@ export default function Profile() {
                                 Perfil
                             </p>
 
-                            <p onClick={handleClickFriends} className="amigos-nav">
+                            {/* <p onClick={handleClickFriends} className="amigos-nav">
                                 Amigos
                             </p>
 
                             <p onClick={handleChat} className="chat-nav">
                                 Chat
-                            </p>
+                            </p> */}
                         </div>
 
                         <div className="slide-bar-area">
                             <div className={`slide-bar1 ${activeBar === 1 ? '' : 'hidden'}`} style={{backgroundColor: slideBarColor}}/>
-                            <div className={`slide-bar2 ${activeBar === 2 ? '' : 'hidden'}`} style={{backgroundColor: slideBarColor}}/>
-                            <div className={`slide-bar3 ${activeBar === 3 ? '' : 'hidden'}`} style={{backgroundColor: slideBarColor}}/>
+                            {/* <div className={`slide-bar2 ${activeBar === 2 ? '' : 'hidden'}`} style={{backgroundColor: slideBarColor}}/>
+                            <div className={`slide-bar3 ${activeBar === 3 ? '' : 'hidden'}`} style={{backgroundColor: slideBarColor}}/> */}
                         </div>  
 
 

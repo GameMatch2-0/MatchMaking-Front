@@ -75,8 +75,9 @@ p {
 
 .menu-nav {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
+    justify-content: center;
     width: 90%;
     height: 10%;
     margin-left:5%;
@@ -93,11 +94,11 @@ p {
     height: 5px;
     margin-left: 5%;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .slide-bar1 {
-    width: 60px;
+    width: 100%;
 }
 
 .slide-bar2 {
