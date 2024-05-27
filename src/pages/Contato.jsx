@@ -9,7 +9,7 @@ export default function Contato() {
             <Navbar />
 
             <div className="div-contato">
-                <h1>Fale com a gente!</h1>
+                <h1>Fale com a gente!</h1>  
                 <div className="text-div">
                     <textarea cols="30" rows="10" className="txt-area"></textarea>
                 </div>
@@ -20,4 +20,4 @@ export default function Contato() {
             <Footer />
         </>
     )
-}
+}   

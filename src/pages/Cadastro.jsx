@@ -199,23 +199,10 @@ export default function Cadastro(){
         try {
             console.log('Objeto enviado para o servidor:', newData);
 
-            const response = await axios.post('http://localhost:8080/perfis/novo-cadastro', newData);
-            console.log(response.data);
-
-            const loginResponse = await axios.post('http://localhost:8080/usuarios/login', {
-                email,
-                senha,
-            });
-
-            sessionStorage.setItem('token', loginResponse.data.token)
-            sessionStorage.setItem('userID', loginResponse.data.userId)
-            sessionStorage.setItem('nome', loginResponse.data.nome)
-            sessionStorage.setItem('email', loginResponse.data.email)
-            sessionStorage.setItem('username', username)
-
             createUserWithEmailAndPassword(auth, email, senha)
                 .then((userCredential) => {
                     const user = userCredential.user;
+                    sessionStorage.setItem('userIDFirebase', user.uid)
                     console.log('Usuário criado com sucesso:', user);
                 })
                 .catch((error) => {
@@ -238,7 +225,7 @@ export default function Cadastro(){
                 dt_nascimento: birthdate,
                 email: newData.usuario.email,
                 generos_favoritos: generosFavoritos,
-                id_usuario: loginResponse.data.userId,
+                id_usuario: sessionStorage.getItem('userIDFirebase'),
                 identidadeGenero: newData.usuario.identidadeGenero,
                 interesses: hobbies,
                 jogos_favoritos: jogosFavoritos, 
@@ -251,6 +238,8 @@ export default function Cadastro(){
             });
 
             localStorage.setItem('docId', docRef.id);
+
+            console.log('chegou aqui');
 
             window.location.href = 'http://localhost:5173/profile'
         } catch (error) {

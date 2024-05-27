@@ -34,19 +34,10 @@ export default function Profile() {
 
     useEffect(() => {
         async function fetchUserInfo() {
-            const userID = sessionStorage.getItem('userID');
-            const token = sessionStorage.getItem('token');
+            const userID = sessionStorage.getItem('userIDFirebase');
     
-            if (userID && token) {
+            if (userID) {
                 try {
-                    const userInfo = await axios.get(`http://localhost:8080/usuarios/${userID}`, {
-                        headers: {
-                            'Authorization': `Bearer ${token}`
-                        }
-                    });
-                    setNomeCompleto(userInfo.data.nomeCompleto);
-                    setUsername(sessionStorage.getItem('username'));
-
                     const usersRef = collection(firestore, "users");
 
                     const q = query(usersRef, where("id_usuario", "==", userID));
@@ -66,7 +57,7 @@ export default function Profile() {
     
                         if (docData.exists()) {
                             const data = docData.data();
-                            const { username, jogos_favoritos, generos_favoritos, consoles, interesses } = data;
+                            const { nome, sobrenome, username, jogos_favoritos, generos_favoritos, consoles, interesses } = data;
                         
                             const favGameCardData = jogos_favoritos ? jogos_favoritos.map(jogo => ({
                                 name: jogo,
@@ -93,6 +84,7 @@ export default function Profile() {
                             setFavPlataformaCard(favPlataformaCardData);
                             setFavHobbieCard(favHobbieCardData);
                             setUsername(username);
+                            setNomeCompleto(nome + sobrenome);
                         } else {
                             console.log("Nenhum documento encontrado!");
                         }

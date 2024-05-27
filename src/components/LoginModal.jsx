@@ -37,25 +37,6 @@ const LoginModal = ({ isOpen, onClose }) => {
             sessionStorage.setItem('nomeFirebase', user.displayName);
             sessionStorage.setItem('emailFirebase', user.email);
 
-            const response = await axios.post('http://localhost:8080/usuarios/login', {
-                email,
-                senha,
-            });
-           
-            console.log('Token:', response.data.token);
-
-            sessionStorage.setItem('token', response.data.token)
-            sessionStorage.setItem('userID', response.data.userId)
-            sessionStorage.setItem('nome', response.data.nome)
-            sessionStorage.setItem('email', response.data.email)
-
-            if (rememberUser) {
-                sessionStorage.setItem('nome', response.data.nome);
-                sessionStorage.setItem('email', response.data.email);
-            }
-
-
-
             window.location.href = 'http://localhost:5173/profile'
             onClose(); 
         } catch (error) {
