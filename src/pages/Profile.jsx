@@ -31,6 +31,7 @@ export default function Profile() {
     const [favInteresseCard, setFavInteresseCard] = useState([]);
     const [favPlataformaCard, setFavPlataformaCard] = useState([]);
     const [favHobbieCard, setFavHobbieCard] = useState([]);
+    const [fotoPerfil, setFotoPerfil] = useState('');
 
     useEffect(() => {
         async function fetchUserInfo() {
@@ -57,7 +58,7 @@ export default function Profile() {
     
                         if (docData.exists()) {
                             const data = docData.data();
-                            const { nome, sobrenome, username, jogos_favoritos, generos_favoritos, consoles, interesses } = data;
+                            const { nome, sobrenome, username, jogos_favoritos, generos_favoritos, consoles, interesses, foto_perfil } = data;
                         
                             const favGameCardData = jogos_favoritos ? jogos_favoritos.map(jogo => ({
                                 name: jogo,
@@ -84,7 +85,8 @@ export default function Profile() {
                             setFavPlataformaCard(favPlataformaCardData);
                             setFavHobbieCard(favHobbieCardData);
                             setUsername(username);
-                            setNomeCompleto(nome + sobrenome);
+                            setNomeCompleto(nome + " " + sobrenome);
+                            setFotoPerfil(foto_perfil);
                         } else {
                             console.log("Nenhum documento encontrado!");
                         }
@@ -188,7 +190,7 @@ export default function Profile() {
             <section className='user-profile'>
                 <div className="user-menu">
                     <div className="menu-header" style={{ backgroundImage: headerColor }}>
-                        <img src={foto} alt="foto de perfil" className='foto-usuario'/>
+                        <img src={fotoPerfil} alt="foto de perfil" className='foto-usuario'/>
 
                         <div className="usernames">
                             <p className="nickname">

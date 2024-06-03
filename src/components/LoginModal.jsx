@@ -3,9 +3,12 @@ import axios from 'axios';
 import '../css/login.css'
 import Recuperacao from '../components/Recuperacao';
 import { app, auth, firestore } from "../services/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const LoginModal = ({ isOpen, onClose }) => {
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [changeAuthMethod, setChangeAuthMethod] = useState(false);
@@ -30,14 +33,15 @@ const LoginModal = ({ isOpen, onClose }) => {
 
             const user = userCredential.user;
 
-            console.log('Token Firebase:', user.refreshToken);
+            console.log('Usuário:', user);
 
             sessionStorage.setItem('tokenFirebase', user.refreshToken);
             sessionStorage.setItem('userIDFirebase', user.uid);
             sessionStorage.setItem('nomeFirebase', user.displayName);
             sessionStorage.setItem('emailFirebase', user.email);
 
-            window.location.href = 'http://localhost:5173/profile'
+            navigate("/profile");
+
             onClose(); 
         } catch (error) {
             console.error('Erro ao autenticar:', error);

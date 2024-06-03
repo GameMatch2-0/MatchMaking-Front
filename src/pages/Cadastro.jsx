@@ -21,10 +21,6 @@ import InputMask from 'react-input-mask';
 export default function Cadastro(){
     const navigate = useNavigate();
 
-    const handleImageChange = (event) => {
-        const file = event.target.files[0];
-    };
-
     const [isModalOpen, setModalOpen] = useState(false);
 
     const openModal = () => setModalOpen(true);
@@ -84,6 +80,7 @@ export default function Cadastro(){
     const [identidadeGenero, setIdentidadeGenero] = useState('');
     const [username, setUsername] = useState('');
     const [confirmSenhaColor, setConfirmSenhaColor] = useState('white');
+    const [fotoPerfil, setFotoPerfil] = useState('');
 
     const handleNomeChange = (event) => {
         const { value } = event.target;
@@ -129,6 +126,10 @@ export default function Cadastro(){
         setUsername(value);
     };
 
+    const handleImageChange = (url) => {
+        setFotoPerfil(url);
+    };
+
     const handleCreateAccount = async () => {
         const orientacaoSexualLocal = JSON.parse(localStorage.getItem('orientacaoSexual'));
         const orientacaoSexual = orientacaoSexualLocal[0];
@@ -152,7 +153,7 @@ export default function Cadastro(){
                 procuraAmizade: true,
                 procuraNamoro: false,
                 procuraPlayer2: false,
-                isPremium: false
+                isPremium: false,
             },
             generoJogoPerfil:[
                 {
@@ -202,8 +203,13 @@ export default function Cadastro(){
             createUserWithEmailAndPassword(auth, email, senha)
                 .then((userCredential) => {
                     const user = userCredential.user;
-                    sessionStorage.setItem('userIDFirebase', user.uid)
-                    console.log('Usuário criado com sucesso:', user);
+                    if (user && user.uid) {
+                        sessionStorage.removeItem('userIDFirebase');
+                        sessionStorage.setItem('userIDFirebase', user.uid);
+                        console.log('Usuário criado com sucesso:', user);
+                    } else {
+                        console.error('Erro ao criar usuário: UID inválido.');
+                    }
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -216,7 +222,7 @@ export default function Cadastro(){
             const hobbies = JSON.parse(localStorage.getItem('hobbiesFavoritos'));
             const jogosFavoritos = JSON.parse(localStorage.getItem('jogosFavoritos'));
 
-            const docRef = await addDoc(collection(firestore, "users"), {
+            const docRef = await addDoc(collection(firestore, "users"), {   
                 biografia: newData.perfil.biografia,
                 consoles: plataformas,
                 contato: newData.usuario.contato,
@@ -235,13 +241,14 @@ export default function Cadastro(){
                 senha: senha,
                 sobrenome: sobrenome,
                 username: username,
+                foto_perfil: fotoPerfil,
             });
 
             localStorage.setItem('docId', docRef.id);
 
             console.log('chegou aqui');
 
-            window.location.href = 'http://localhost:5173/profile'
+            navigate("/profile");
         } catch (error) {
             console.error('Erro ao criar a conta:', error);
         }

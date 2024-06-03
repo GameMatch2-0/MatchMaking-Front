@@ -27,7 +27,8 @@ p {
     width: 65px;
     height: 65px;
     margin-left: 5%;
-    border-radius: 15px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .usernames {

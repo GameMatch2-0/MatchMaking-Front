@@ -13,7 +13,6 @@ import { collection, getDocs } from "firebase/firestore";
 const MatchMenu = () => {
     const [data, setData] = useState([]);
     const [currentScroll, setCurrentScroll] = useState(0);
-    const [currentImage, setCurrentImage] = useState('https://picsum.photos/600/300')
 
     useEffect(() => {
         async function fetchUserDocuments() {
@@ -23,16 +22,15 @@ const MatchMenu = () => {
     
             const data = querySnapshot.docs.map(doc => {
                 const docData = doc.data();
-                const { id_usuario, username, nome, sobrenome, dt_nascimento, nota, biografia } = docData;
+                const { id_usuario, username, nome, sobrenome, dt_nascimento, nota, biografia, foto_perfil } = docData;
                 const interesses = docData.interesses || [];
                 const jogos_favoritos = docData.jogos_favoritos || [];
                 const generos_favoritos = docData.generos_favoritos || [];
                 const consoles = docData.consoles || [];
             
-                return { id_usuario, username, nome, sobrenome, dt_nascimento, nota, biografia, interesses, jogos_favoritos, generos_favoritos, consoles };
+                return { id_usuario, username, nome, sobrenome, dt_nascimento, nota, biografia, interesses, jogos_favoritos, generos_favoritos, consoles, foto_perfil };
             });
             
-    
             console.log(data);
             setData(data);
         }
@@ -55,21 +53,18 @@ const MatchMenu = () => {
         const carousel = document.querySelector('.carousel');
         setCurrentScroll(currentScroll + carousel.clientHeight);
         carousel.scrollTop = currentScroll;
-
-        const newImage = `https://picsum.photos/600/300?random=${Math.random()}`;
-        setCurrentImage(newImage);
     };
 
     return (
         <div className="match-menu">
             <div className="carousel">
             {data.map((item) => {
-                const { id_usuario, username, nome, sobrenome, dt_nascimento, nota, biografia, interesses, jogos_favoritos, generos_favoritos, consoles } = item;
+                const { id_usuario, username, nome, sobrenome, dt_nascimento, nota, biografia, interesses, jogos_favoritos, generos_favoritos, consoles, foto_perfil } = item;
                 const idade = calculateAge(dt_nascimento);
                 return ( 
                     <div className="match-info" key={id_usuario}>
                         <div className="album">
-                            <img src={currentImage} alt="foto perfil" />
+                            <img src={foto_perfil} alt="foto perfil" />
                         </div>
 
                         <div className="profile-info">
@@ -118,7 +113,6 @@ const MatchMenu = () => {
                     </div> 
                 );
             })}
-
             </div>
 
             <div className="match-options">
