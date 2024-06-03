@@ -197,58 +197,51 @@ export default function Cadastro(){
             ]
         };
 
+        const plataformas = JSON.parse(localStorage.getItem('plataformasFavoritas'));
+        const generosFavoritos = JSON.parse(localStorage.getItem('interessesFavoritos'));
+        const hobbies = JSON.parse(localStorage.getItem('hobbiesFavoritos'));
+        const jogosFavoritos = JSON.parse(localStorage.getItem('jogosFavoritos'));
+
         try {
             console.log('Objeto enviado para o servidor:', newData);
 
-            createUserWithEmailAndPassword(auth, email, senha)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-                    if (user && user.uid) {
-                        sessionStorage.removeItem('userIDFirebase');
-                        sessionStorage.setItem('userIDFirebase', user.uid);
-                        console.log('Usuário criado com sucesso:', user);
-                    } else {
-                        console.error('Erro ao criar usuário: UID inválido.');
-                    }
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    console.log('Erro ao criar usuário:', errorCode, errorMessage);
+            const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
+            const user = userCredential.user;
+
+            if (user && user.uid) {
+                sessionStorage.removeItem('userIDFirebase');
+                sessionStorage.setItem('userIDFirebase', user.uid);
+                console.log('Usuário criado com sucesso:', user);
+
+                const docRef = await addDoc(collection(firestore, "users"), {   
+                    biografia: newData.perfil.biografia,
+                    consoles: plataformas,
+                    contato: newData.usuario.contato,
+                    dt_cadastro: Timestamp.now(),
+                    deleted: false,
+                    dt_nascimento: birthdate,
+                    email: newData.usuario.email,
+                    generos_favoritos: generosFavoritos,
+                    id_usuario: user.uid,
+                    identidadeGenero: newData.usuario.identidadeGenero,
+                    interesses: hobbies,
+                    jogos_favoritos: jogosFavoritos, 
+                    nome: newData.usuario.nome,
+                    nota: newData.perfil.nota,
+                    orientacao_sexual: newData.perfil.orientacaoSexual,
+                    senha: senha,
+                    sobrenome: sobrenome,
+                    username: username,
+                    foto_perfil: fotoPerfil,
                 });
 
-            const plataformas = JSON.parse(localStorage.getItem('plataformasFavoritas'))
-            const generosFavoritos = JSON.parse(localStorage.getItem('interessesFavoritos'));
-            const hobbies = JSON.parse(localStorage.getItem('hobbiesFavoritos'));
-            const jogosFavoritos = JSON.parse(localStorage.getItem('jogosFavoritos'));
+                localStorage.setItem('docId', docRef.id);
+                console.log('Documento criado com sucesso no Firestore:', docRef.id);
 
-            const docRef = await addDoc(collection(firestore, "users"), {   
-                biografia: newData.perfil.biografia,
-                consoles: plataformas,
-                contato: newData.usuario.contato,
-                dt_cadastro: Timestamp.now(),
-                deleted: false,
-                dt_nascimento: birthdate,
-                email: newData.usuario.email,
-                generos_favoritos: generosFavoritos,
-                id_usuario: sessionStorage.getItem('userIDFirebase'),
-                identidadeGenero: newData.usuario.identidadeGenero,
-                interesses: hobbies,
-                jogos_favoritos: jogosFavoritos, 
-                nome: newData.usuario.nome,
-                nota: newData.perfil.nota,
-                orientacao_sexual: newData.perfil.orientacaoSexual,
-                senha: senha,
-                sobrenome: sobrenome,
-                username: username,
-                foto_perfil: fotoPerfil,
-            });
-
-            localStorage.setItem('docId', docRef.id);
-
-            console.log('chegou aqui');
-
-            navigate("/profile");
+                navigate("/profile");
+            } else {
+                console.error('Erro ao criar usuário: UID inválido.');
+            }
         } catch (error) {
             console.error('Erro ao criar a conta:', error);
         }

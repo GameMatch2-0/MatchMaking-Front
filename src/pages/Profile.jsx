@@ -22,6 +22,8 @@ export default function Profile() {
     const navigate = useNavigate();
 
     const returnIndex = async () => {
+        sessionStorage.clear();
+
         navigate('/');
     };  
 
